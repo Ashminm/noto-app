@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoteHomeComponent } from './note-home/note-home.component';
 
+// -------------meterial-------------------
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +16,9 @@ import { NoteHomeComponent } from './note-home/note-home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
