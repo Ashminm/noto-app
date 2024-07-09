@@ -1,15 +1,14 @@
-<section>
+<section >
    <div class="container-fluid mt-3">
     <h1 class="text-2xl font-medium">General</h1>
     <p class="text-sm">0 Words</p>
-    <div class="lg:w-100 border p-3 my-5 bg-gray-300 rounded-lg cursor-pointer">
+    <div class="lg:w-100 p-3 my-5 bg-gray-200 rounded-lg cursor-pointer border-1 lg:mx-20 md:mx-4 sm:mx-3 border-red-700">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugit aut quia, eaque laborum doloribus officia maiores natus alias, hic sequi, nesciunt culpa obcaecati rem. Amet mollitia blanditiis ipsam cumque!</p>
     </div>
 
-    <div class="flex justify-between">
-        <div class="">
-
-            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="fa-solid fa-bars"></i></p>
+    <footer class="flex justify-between">
+        <div >
+            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="fa-solid fa-bars text-2xl"></i></p>
 
             <div class="offcanvas offcanvas-bottom h-1/2 " tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
             <div class="offcanvas-body small w-auto">
@@ -18,21 +17,25 @@
                             <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel">Noto</h5>
                             <p class="text-sm">0 Notes</p>
                         </div>
-                        <div class="">
+                        <div>
                             <h1><i class="fa-solid fa-gear me-3 text-xl"></i></h1>
                         </div>
                     </div>
                     <div class="flex flex-wrap">
-                        <div class="bg-gray-200 w-40 h-28 m-3">
+                        <div class="bg-gray-100 w-40 h-28 m-3 border-2 border-blue-500 rounded-lg">
+                            <div class="flex justify-between px-4 pt-4">
+                            <h1><i class="fa-solid fa-clone text-xl"></i></h1>
+                            <h1>0</h1>
+                            </div>
+                            <h1 class="px-4 font-medium">All</h1>
+                        </div>
+                        <div class="bg-gray-100 w-40 h-28 m-3 border-2 border-orange-500 rounded-lg">
                             
                         </div>
-                        <div class="bg-gray-200 w-40 h-28 m-3">
+                        <div class="bg-gray-100 w-40 h-28 m-3 border-2 border-red-500 rounded-lg">
                             
                         </div>
-                        <div class="bg-gray-200 w-40 h-28 m-3">
-                            
-                        </div>
-                        <div class="bg-gray-200 w-40 h-28 m-3">
+                        <div class="bg-gray-100 w-40 h-28 m-3 border-2 border-purple-600 rounded-lg">
                             
                         </div>
                     </div>
@@ -40,15 +43,17 @@
             </div>
 
         </div>
-        <div class="flex justify-between w-60 sm:w-80">
-            <h1><i class="fa-solid fa-bell"></i></h1>
-            <h1><i class="fa-solid fa-pen-to-square"></i></h1>
-            <h1><i class="fa-solid fa-share-nodes"></i></h1>
-            <h1><i class="fa-solid fa-magnifying-glass"></i></h1>
-            <h1><i class="fa-solid fa-copy"></i></h1>
-            <h1><i class="fa-solid fa-thumbtack"></i></h1>
-            <h1><i class="fa-solid fa-trash"></i></h1>
+        <div class="sticky bottom-0 overflow-scroll">
+            <div class="flex justify-between w-60 sm:w-80  ">
+                <h1><i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4"></i></h1>
+                <h1><i class="fa-solid fa-pen-to-square text-xl"></i></h1>
+                <h1><i class="fa-solid fa-share-nodes text-xl"></i></h1>
+                <h1><i class="fa-solid fa-magnifying-glass text-xl"></i></h1>
+                <h1><i class="fa-solid fa-copy text-xl"></i></h1>
+                <h1><i class="fa-solid fa-thumbtack text-xl"></i></h1>
+                <h1><i class="fa-solid fa-trash text-xl"></i></h1>
+            </div>
         </div>
-    </div>
+    </footer>
    </div>
 </section>
