@@ -7,12 +7,14 @@ import { NoteHomeComponent } from './note-home/note-home.component';
 
 // -------------meterial-------------------
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddnoteComponent } from './addnote/addnote.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NoteHomeComponent
+    NoteHomeComponent,
+    AddnoteComponent
   ],
   imports: [
     BrowserModule,
