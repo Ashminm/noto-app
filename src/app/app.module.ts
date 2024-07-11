@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoteHomeComponent } from './note-home/note-home.component';
-
-// -------------meterial-------------------
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddnoteComponent } from './addnote/addnote.component';
 import { ViewnoteComponent } from './viewnote/viewnote.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// -------------meterial-------------------
+
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ViewnoteComponent } from './viewnote/viewnote.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+  
   
   ],
   providers: [],
