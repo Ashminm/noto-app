@@ -9,7 +9,7 @@ import { ViewnoteComponent } from './viewnote/viewnote.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // -------------meterial-------------------
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-  
+    MatSnackBarModule
   
   ],
   providers: [],
