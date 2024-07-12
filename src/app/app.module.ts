@@ -10,6 +10,7 @@ import { ViewnoteComponent } from './viewnote/viewnote.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // -------------meterial-------------------
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AddtodoComponent } from './addtodo/addtodo.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AppComponent,
     NoteHomeComponent,
     AddnoteComponent,
-    ViewnoteComponent
+    ViewnoteComponent,
+    AddtodoComponent,
   ],
   imports: [
     BrowserModule,
