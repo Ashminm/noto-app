@@ -9,7 +9,6 @@ import { ViewnoteComponent } from './viewnote/viewnote.component';
 import { AddtodoComponent } from './addtodo/addtodo.component';
 import { DeletenoteComponent } from './deletenote/deletenote.component';
 import { EditnoteComponent } from './editnote/editnote.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // -------------meterial-------------------
 import {MatSnackBarModule} from '@angular/material/snack-bar';
