@@ -1,8 +1,13 @@
-<h2 mat-dialog-title>Edit Note</h2>
-<mat-dialog-content>
-  input
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
-</mat-dialog-actions>
+<section class="p-[25px]">
+  <h1 class="font-medium text-2xl">Edit Notes</h1>
+<mat-form-field>
+  <mat-label>Input</mat-label>
+  <input class="border" matInput placeholder="Note heading">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Textarea</mat-label>
+  <textarea class="border" matInput placeholder="Enter your note"></textarea>
+</mat-form-field>
+
+</section>
