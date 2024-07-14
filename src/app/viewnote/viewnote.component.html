@@ -27,7 +27,11 @@
                                 <p class="text-sm">0 Notes</p>
                             </div>
                             <div class="flex">
-                                <h1><i class="fa-solid fa-filter text-xl lg:me-4"></i></h1>
+                                <h1 [matMenuTriggerFor]="menu" class="cursor-pointer"><i class="fa-solid fa-filter text-xl lg:me-4 "></i></h1>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>Item 1</button>
+                                    <button mat-menu-item>Item 2</button>
+                                  </mat-menu>
                                 <h1><i class="fa-solid fa-gear mx-3 text-xl"></i></h1>
                             </div>
                         </div>

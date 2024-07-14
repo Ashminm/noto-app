@@ -15,7 +15,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -35,7 +35,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule
     
   ],
   providers: [],
