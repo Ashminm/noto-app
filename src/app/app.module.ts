@@ -9,6 +9,8 @@ import { ViewnoteComponent } from './viewnote/viewnote.component';
 import { AddtodoComponent } from './addtodo/addtodo.component';
 import { DeletenoteComponent } from './deletenote/deletenote.component';
 import { EditnoteComponent } from './editnote/editnote.component';
+import { CategoryComponent } from './category/category.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // -------------meterial-------------------
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -17,6 +19,7 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AddtodoComponent,
     DeletenoteComponent,
     EditnoteComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +41,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     FormsModule,
     MatMenuModule,
-    MatFormFieldModule
-    
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
