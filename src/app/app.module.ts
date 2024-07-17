@@ -8,9 +8,10 @@ import { AddnoteComponent } from './addnote/addnote.component';
 import { ViewnoteComponent } from './viewnote/viewnote.component';
 import { AddtodoComponent } from './addtodo/addtodo.component';
 import { DeletenoteComponent } from './deletenote/deletenote.component';
-import { EditnoteComponent } from './editnote/editnote.component';
 import { CategoryComponent } from './category/category.component';
 
+
+import {HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // -------------meterial-------------------
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -21,6 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,6 @@ import {MatSelectModule} from '@angular/material/select';
     ViewnoteComponent,
     AddtodoComponent,
     DeletenoteComponent,
-    EditnoteComponent,
     CategoryComponent,
   ],
   imports: [
@@ -42,7 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     MatMenuModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

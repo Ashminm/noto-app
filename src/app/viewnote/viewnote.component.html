@@ -10,8 +10,15 @@
         </div>
     </div>
     <div class="lg:w-100 p-3 my-5 bg-gray-200 rounded-lg cursor-pointer border-1 lg:mx-20 md:mx-4 sm:mx-3 border-red-700">
-        <h1 class="text-xl font-medium">Heading</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugit aut quia, Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta a sint aut placeat ex inventore distinctio, ipsum molestiae voluptas eum commodi ullam! Ipsam eum culpa ea corporis veritatis repellat fugiat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et enim laudantium sequi tempora accusantium architecto nisi, aspernatur eos obcaecati nulla, porro hic veniam maiores cupiditate at quis, qui atque doloribus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad rerum, enim dolorem fugit provident eaque harum eius dolore error iure facilis corporis aliquam aut vero numquam illum delectus Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ipsam magnam, velit dolor facere nisi cum explicabo delectus fuga alias totam nesciunt dolorem. Inventore explicabo omnis facilis quidem, eligendi sint. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis omnis ratione odio consectetur sunt quisquam odit! Iste impedit illum, debitis ut maxime, neque eos, a repellendus sequi velit dicta fugit? culpa! Aliquam? eaque laborum Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident debitis nam accusantium laborum. Nulla sit molestiae unde officiis eveniet quisquam, accusamus aperiam nemo omnis eum eligendi cum soluta sed repudiandae? doloribus officia maiores natus alias, hic sequi, nesciunt culpa obcaecati rem. Amet mollitia blanditiis ipsam cumque!</p>
+        <input ngModel={{AllNotes.title}} class="text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
+        <br>
+        <textarea  name="" id=""  class="p-1 px-2 bg-transparent outline-none w-full h-auto" ngModel={{AllNotes.body}}></textarea>
+        <textarea 
+    class="p-1 px-2 bg-transparent outline-none w-full auto-height" 
+    ngModel="{{AllNotes.body}}"
+    oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
+></textarea>
+
     </div>
 
     <div class="fixed bottom-0  py-3 w-full lg:px-5 md:px-5 bg-[#f3f4f6]">
@@ -83,7 +90,6 @@
             <div class="overflow-scroll pe-4">
                 <div class="flex justify-between w-60 sm:w-80  ">
                     <h1><i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4"></i></h1>
-                    <h1 class="cursor-pointer hover:text-red-600"  (click)="openEdit('0ms', '0ms')"><i class="fa-solid fa-pen-to-square text-xl"></i></h1>
                     <h1><i class="fa-solid fa-share-nodes text-xl"></i></h1>
                     <h1><i class="fa-solid fa-magnifying-glass text-xl"></i></h1>
                     <h1><i class="fa-solid fa-copy text-xl"></i></h1>

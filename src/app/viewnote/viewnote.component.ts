@@ -1,28 +1,43 @@
 import { Component } from '@angular/core';
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog } from '@angular/material/dialog';
-import { EditnoteComponent } from '../editnote/editnote.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
+import { ActivatedRoute } from '@angular/router';
+import { OnInit } from '@angular/core';
+import { BackendApiService } from '../services/backend-api.service';
 
 @Component({
   selector: 'app-viewnote',
   templateUrl: './viewnote.component.html',
   styleUrls: ['./viewnote.component.css']
 })
-export class ViewnoteComponent {
+export class ViewnoteComponent implements OnInit {
 
- constructor(private dialog: MatDialog) {}
+  NoteUid:any=0
+  AllNotes:any={}
+ constructor(private dialog: MatDialog,private aroute:ActivatedRoute,private api:BackendApiService) {
+  aroute.params.subscribe((res:any)=>{
+    this.NoteUid=res.id
+    // console.log(this.NoteUid);
+    
+  })
+ }
+
+ ngOnInit() {
+  this.getData()
+   
+ }
+
+ getData(){
+  this.api.getSinglsNotes(this.NoteUid).subscribe((res:any)=>{
+    this.AllNotes=res
+    // console.log(this.AllNotes);
+  })
+ }
+
+
 
   openDelete(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DeletenoteComponent, {
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-  }
-  openEdit(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(EditnoteComponent, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,

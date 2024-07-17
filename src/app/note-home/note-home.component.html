@@ -20,13 +20,11 @@
                   <app-addnote></app-addnote>
                 </h1>
            </div>
-           <div class="lg:w-100 border p-3 mb-4 mt-5 bg-gray-300 rounded-lg cursor-pointer" routerLink="/view/id">
-                <h1 class="text-xl font-medium">Heading</h1>
+           <div class="mt-4 overflow-y-scroll h-[80vh]">
+            <div class="lg:w-100 border p-3 mb-3 bg-gray-300 rounded-lg cursor-pointer" routerLink="/view/{{note?._id}}" *ngFor="let note of AllNotes">
+                <h1 class="text-xl font-medium pb-2">{{note?.title}}</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugit aut quia, eaque laborum doloribus officia maiores natus alias, hic sequi, nesciunt culpa obcaecati rem. Amet mollitia blanditiis ipsam cumque!</p>
            </div>
-           <div class="lg:w-100 border p-3  bg-gray-300 rounded-lg">
-                <h1 class="text-xl font-medium">Heading</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugit aut quia, eaque laborum doloribus officia maiores natus alias, hic sequi, nesciunt culpa obcaecati rem. Amet mollitia blanditiis ipsam cumque!</p>
            </div>
         </div>
         <div class="p-4 w-96">
