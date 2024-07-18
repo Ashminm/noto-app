@@ -18,16 +18,20 @@ export class AddnoteComponent {
 
 
   getFormData(){
-      // console.log(this.AddForm.value); 
       this.Api.AddNotes(this.AddForm.value).subscribe({
         next:(res:any)=>{
-          console.log(res);  
+          console.log(res); 
+          this.AddForm.reset()
         },
         error:(err:any)=>{
-          console.log(err.statusText);
+          console.log(err.statusText,":Already in your note");
           
         }
       })
+  }
+
+  resetFm(){
+    this.AddForm.reset()
   }
 
 }

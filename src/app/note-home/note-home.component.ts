@@ -25,7 +25,7 @@ export class NoteHomeComponent implements OnInit {
   ngOnInit() {
     this.Api.getAllNotes().subscribe((res:any)=>{
       this.AllNotes=res
-      console.log(this.AllNotes);
+      // console.log(this.AllNotes);
     })
     this.Api.getAllTodos().subscribe((res:any)=>{
       this.AllTodos=res

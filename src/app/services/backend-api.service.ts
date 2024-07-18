@@ -26,4 +26,7 @@ export class BackendApiService {
   getSinglsTodos(id:any){
     return this.Http.get(`${this.SERVER_URL}/get-single-todos/${id}`)
   }
+  AddTodo(data:any){
+    return this.Http.post(`${this.SERVER_URL}/add-todo`,data)
+  }
 }

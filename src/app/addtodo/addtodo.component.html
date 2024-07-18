@@ -1,23 +1,27 @@
 <p type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom"><i class="fa-solid fa-plus text-xl hover:text-red-500"></i></p>
 
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel3">
-  <div class="offcanvas-header">
-    <div>
-        <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel3">Task</h5>
-        <p class="text-sm">0 Tasks</p>
+  <form [formGroup]="AddTodoForm">
+    <div class="offcanvas-header">
+      <div>
+          <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel3">Task</h5>
+          <p class="text-sm">0 Tasks</p>
+      </div>
+     <div>
+      <button type="submit" *ngIf="AddTodoForm.valid" (click)="getFormData()" class="btn py-1"><i class="fa-solid fa-check text-2xl text-green-500"></i></button>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="resetFm()"></button>
+     </div>
     </div>
-   <div>
-    <button type="submit" class="btn py-1"><i class="fa-solid fa-check text-2xl text-gray-500"></i></button>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-   </div>
-  </div>
-  <div class="offcanvas-body small w-auto">
-        <div>
-            <div class=" mb-3">
-                <input type="text" placeholder="Title" class="p-3 border-0 outline-none w-full text-lg ">
-            </div>
-            <p class="italic pb-1 text-xs">Created just now</p>
-            <p class="italic text-xs">Accessed just now</p>
-        </div>
-  </div>
+    <div class="offcanvas-body small w-auto">
+          <div>
+              <div class=" mb-3">
+                  <input type="text" formControlName="title" placeholder="Title" class="p-3 border-0 outline-none w-full text-lg ">
+                  <div class="text-red-500 ps-3 text-[12px]" *ngIf="AddTodoForm.get('title')?.invalid && AddTodoForm.get('title')?.touched">Task Invalid</div>
+
+              </div>
+              <p class="italic pb-1 text-xs">Created just now</p>
+              <p class="italic text-xs">Accessed just now</p>
+          </div>
+    </div>
+  </form>
 </div>

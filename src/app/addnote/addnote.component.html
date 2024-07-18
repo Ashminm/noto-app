@@ -9,7 +9,7 @@
       </div>
       <div>
         <button type="submit" class="btn py-1" *ngIf="AddForm.valid" (click)="getFormData()"><i class="fa-solid fa-check text-2xl text-green-600"></i></button>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="resetFm()"></button>
       </div>
     </div>
     <div class="offcanvas-body small w-auto">
