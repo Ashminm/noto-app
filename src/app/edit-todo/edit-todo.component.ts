@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { BackendApiService } from '../services/backend-api.service';
+
 
 @Component({
   selector: 'app-edit-todo',
   templateUrl: './edit-todo.component.html',
   styleUrls: ['./edit-todo.component.css']
 })
-export class EditTodoComponent {
+export class EditTodoComponent implements OnInit {
 
+  Todos:any={}
+
+  constructor(private Api:BackendApiService){}
+
+  ngOnInit(){
+    
+  }
 }

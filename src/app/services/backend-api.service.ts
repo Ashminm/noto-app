@@ -17,7 +17,13 @@ export class BackendApiService {
   getSinglsNotes(id:any){
     return this.Http.get(`${this.SERVER_URL}/get-single-notes/${id}`)
   }
+  AddNotes(data:any){
+    return this.Http.post(`${this.SERVER_URL}/add-note`,data)
+  }
   getAllTodos(){
     return this.Http.get(`${this.SERVER_URL}/get-all-todo`)
+  }
+  getSinglsTodos(id:any){
+    return this.Http.get(`${this.SERVER_URL}/get-single-todos/${id}`)
   }
 }

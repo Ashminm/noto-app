@@ -10,7 +10,7 @@ import { AddtodoComponent } from './addtodo/addtodo.component';
 import { DeletenoteComponent } from './deletenote/deletenote.component';
 import { CategoryComponent } from './category/category.component';
 
-
+import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // -------------meterial-------------------
@@ -49,6 +49,7 @@ import { EditTodoComponent } from './edit-todo/edit-todo.component';
     MatFormFieldModule,
     MatSelectModule,
     HttpClientModule,
+    ReactiveFormsModule,
   
   ],
   providers: [],
