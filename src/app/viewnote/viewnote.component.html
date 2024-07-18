@@ -9,15 +9,10 @@
         <p class="text-sm">0 Words</p>
         </div>
     </div>
-    <div class="lg:w-100 p-3 my-5 bg-gray-200 rounded-lg cursor-pointer border-1 lg:mx-20 md:mx-4 sm:mx-3 border-red-700">
-        <input ngModel={{AllNotes.title}} class="text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
+    <div class="lg:w-100 p-3 my-5 bg-gray-200 rounded-lg cursor-pointer border-1 lg:mx-20 md:mx-4 sm:mx-3">
+        <input ngModel={{AllNotes.title}} class="w-full text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
         <br>
-        <textarea  name="" id=""  class="p-1 px-2 bg-transparent outline-none w-full h-auto" ngModel={{AllNotes.body}}></textarea>
-        <textarea 
-    class="p-1 px-2 bg-transparent outline-none w-full auto-height" 
-    ngModel="{{AllNotes.body}}"
-    oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
-></textarea>
+        <textarea rows="6"  name="" id=""  class="resize-none p-1 px-2 bg-transparent outline-none w-full h-auto" ngModel={{AllNotes.body}}></textarea>
 
     </div>
 

@@ -21,6 +21,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import { EditTodoComponent } from './edit-todo/edit-todo.component';
+
+
 
 
 @NgModule({
@@ -32,6 +35,7 @@ import {MatSelectModule} from '@angular/material/select';
     AddtodoComponent,
     DeletenoteComponent,
     CategoryComponent,
+    EditTodoComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatMenuModule,
     MatFormFieldModule,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
