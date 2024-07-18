@@ -11,7 +11,7 @@ import { OnInit } from '@angular/core';
 export class NoteHomeComponent implements OnInit {
 
   AllNotes:any[]=[]
-
+  AllTodos:any[]=[]
   constructor(private dialog: MatDialog,private Api:BackendApiService) {}
 
   openDelete(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -26,6 +26,11 @@ export class NoteHomeComponent implements OnInit {
     this.Api.getAllNotes().subscribe((res:any)=>{
       this.AllNotes=res
       // console.log(this.AllNotes);
+    })
+    this.Api.getAllTodos().subscribe((res:any)=>{
+      this.AllTodos=res
+      // console.log(this.AllTodos);
+      
     })
 
   }

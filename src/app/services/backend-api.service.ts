@@ -17,4 +17,7 @@ export class BackendApiService {
   getSinglsNotes(id:any){
     return this.Http.get(`${this.SERVER_URL}/get-single-notes/${id}`)
   }
+  getAllTodos(){
+    return this.Http.get(`${this.SERVER_URL}/get-all-todo`)
+  }
 }
