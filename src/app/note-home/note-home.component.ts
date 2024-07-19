@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BackendApiService } from '../services/backend-api.service';
-import { OnInit } from '@angular/core';
+
+
+
 @Component({
   selector: 'app-note-home',
   templateUrl: './note-home.component.html',
@@ -12,6 +14,7 @@ export class NoteHomeComponent implements OnInit {
 
   AllNotes:any[]=[]
   AllTodos:any[]=[]
+  // categories:any[] = [];
   constructor(private dialog: MatDialog,private Api:BackendApiService) {}
 
   openDelete(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -34,5 +37,29 @@ export class NoteHomeComponent implements OnInit {
     })
 
   }
+
+
+
+
+
+
+
+
+
+  // GetCategory() {
+  //   this.Api.getAllNotes().subscribe((res: any) => {
+  //     if (res && res.length) {
+  //       res.forEach(({ category }: any) => {
+  //         if (!this.categories.some(cat => cat.name === category)) {
+  //           this.categories.push({ name: category, length: category.length });
+  //         }
+  //       });
+  //       console.log(this.categories);
+        
+  //     } else {
+  //       console.error("No Category.");
+  //     }
+  //   });
+  // }
 
 }
