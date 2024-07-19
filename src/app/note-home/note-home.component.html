@@ -20,14 +20,14 @@
                   <app-addnote></app-addnote>
                 </h1>
            </div>
-           <div class="mt-4 overflow-y-scroll h-[80vh]">
+           <div class="mt-4 overflow-y-scroll lg:h-[81vh]">
             <div class="lg:w-100 border p-3 mb-3 bg-gray-300 rounded-lg cursor-pointer" routerLink="/view/{{note?._id}}" *ngFor="let note of AllNotes">
                 <h1 class="text-xl font-medium pb-2 overflow-hidden">{{note?.title}}</h1>
                 <p>{{note?.body.slice(0,248)}}...</p>
            </div>
            </div>
         </div>
-        <div class="p-4 lg:w-96 sm:w-full md:w-full">
+        <div class="p-4 lg:w-96 sm:w-full md:w-full  overflow-y-scroll lg:h-[97vh]">
             <h1 class="text-3xl font-medium">To-Do-List</h1>
             <div class="flex justify-between items-center">
                <p class="text-sm m-0">{{AllTodos.length}} Task</p>

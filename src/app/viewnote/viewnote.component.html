@@ -13,7 +13,10 @@
         <input ngModel={{AllNotes.title}} class="w-full text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
         <br>
         <textarea rows="6"  name="" id=""  class="resize-none p-1 px-2 bg-transparent outline-none w-full h-auto" ngModel={{AllNotes.body}}></textarea>
-
+        <div class="pt-2 ps-2">
+            <p class="italic pb-1 text-xs text-gray-500">Created ({{AllNotes.date | date:'EEE, d MMM h:mm a'}} )</p>
+            <p class="italic text-xs text-gray-500">Accessed just now</p>
+        </div>
     </div>
 
     <div class="fixed bottom-0  py-3 w-full lg:px-5 md:px-5 bg-[#f3f4f6]">

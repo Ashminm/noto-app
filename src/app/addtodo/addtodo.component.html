@@ -5,7 +5,7 @@
     <div class="offcanvas-header">
       <div>
           <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel3">Task</h5>
-          <p class="text-sm">0 Tasks</p>
+          <p class="text-sm">{{InCout}} {{Letter}}</p>
       </div>
      <div>
       <button type="submit" *ngIf="AddTodoForm.valid" (click)="getFormData()" class="btn py-1"><i class="fa-solid fa-check text-2xl text-green-500"></i></button>
@@ -15,7 +15,7 @@
     <div class="offcanvas-body small w-auto">
           <div>
               <div class=" mb-3">
-                  <input type="text" formControlName="title" placeholder="Title" class="p-3 border-0 outline-none w-full text-lg ">
+                  <input type="text" formControlName="title" [(ngModel)]="inputValue" (ngModelChange)="InpLength()" placeholder="Title" class="p-3 border-0 outline-none w-full text-lg ">
                   <div class="text-red-500 ps-3 text-[12px]" *ngIf="AddTodoForm.get('title')?.invalid && AddTodoForm.get('title')?.touched">Task Invalid</div>
 
               </div>

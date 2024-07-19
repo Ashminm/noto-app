@@ -5,7 +5,7 @@
     <div class="offcanvas-header">
       <div>
           <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel">General</h5>
-          <p class="text-sm">0 Words</p>
+          <p class="text-sm">{{InCout}} {{Letter}}</p>
       </div>
       <div>
         <button type="submit" class="btn py-1" *ngIf="AddForm.valid" (click)="getFormData()"><i class="fa-solid fa-check text-2xl text-green-600"></i></button>
@@ -19,9 +19,8 @@
                   <div class="text-red-500 ps-3 text-[12px]" *ngIf="AddForm.get('title')?.invalid && AddForm.get('title')?.touched">Invalid Title</div>
               </div>
               <div class="mb-4">
-                  <input type="text" formControlName="body" placeholder="Body" class="px-3 pt-3  outline-none border-0 text-sm w-full">
+                  <textarea type="text" [(ngModel)]="inputValue" (ngModelChange)="InpLength()" formControlName="body" placeholder="Body" class="px-3 pt-3  outline-none border-0 text-sm w-full"></textarea>
                   <div class="text-red-500 ps-3 text-[12px]" *ngIf="AddForm.get('body')?.invalid && AddForm.get('body')?.touched">Invalid Body</div>
-
               </div>
               <p class="italic pb-1 text-xs">Created just now</p>
               <p class="italic text-xs">Accessed just now</p>
