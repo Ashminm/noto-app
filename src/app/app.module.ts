@@ -9,10 +9,13 @@ import { ViewnoteComponent } from './viewnote/viewnote.component';
 import { AddtodoComponent } from './addtodo/addtodo.component';
 import { DeletenoteComponent } from './deletenote/deletenote.component';
 import { CategoryComponent } from './category/category.component';
+import { EditTodoComponent } from './edit-todo/edit-todo.component';
+
 
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 // -------------meterial-------------------
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -21,7 +24,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import { EditTodoComponent } from './edit-todo/edit-todo.component';
 
 
 
@@ -50,7 +52,11 @@ import { EditTodoComponent } from './edit-todo/edit-todo.component';
     MatSelectModule,
     HttpClientModule,
     ReactiveFormsModule,
-  
+    ToastrModule.forRoot({
+      timeOut: 3000, 
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }) 
   ],
   providers: [],
   bootstrap: [AppComponent]

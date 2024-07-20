@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'ngx-toastr/toastr';
 ::-webkit-scrollbar{
     display: none;
 }

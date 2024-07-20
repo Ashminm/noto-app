@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BackendApiService } from '../services/backend-api.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-note-home',
@@ -13,7 +15,7 @@ export class NoteHomeComponent implements OnInit {
   AllNotes: any[] = [];
   AllTodos: any[] = [];
 
-  constructor(private dialog: MatDialog, private Api: BackendApiService) {}
+  constructor(private dialog: MatDialog, private Api: BackendApiService,private toastr:ToastrService) {}
 
   ngOnInit() {
     this.loadNotes();
@@ -42,9 +44,11 @@ export class NoteHomeComponent implements OnInit {
           this.AllTodos[index] = res;
         }
         this.loadTodos()
+        this.toastr.success("Updated Successfully!!")
       },
       error => {
         console.error('Error updating todo:', error);
+        this.toastr.info(`${todo.title} is Already Exist in the list!!`)
       }
     );
   }

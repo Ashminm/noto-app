@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BackendApiService } from '../services/backend-api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addtodo',
@@ -13,7 +14,7 @@ export class AddtodoComponent implements OnInit {
   InCout:Number=0
   Letter:any
 
-  constructor(private FB:FormBuilder,private Api:BackendApiService){}
+  constructor(private FB:FormBuilder,private Api:BackendApiService,private toastr:ToastrService){}
 
   AddTodoForm=this.FB.group({
     title:['',Validators.required]
@@ -28,6 +29,7 @@ export class AddtodoComponent implements OnInit {
       next:(res:any)=>{
         console.log(res); 
         this.AddTodoForm.reset() 
+        this.toastr.success("Task Add!!")
       },
       error:(err:any)=>{
         console.log(err.statusText,": Already in yor Task");
