@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BackendApiService } from '../services/backend-api.service';
 
@@ -7,7 +7,7 @@ import { BackendApiService } from '../services/backend-api.service';
   templateUrl: './addtodo.component.html',
   styleUrls: ['./addtodo.component.css']
 })
-export class AddtodoComponent {
+export class AddtodoComponent implements OnInit {
 
   inputValue: string = '';
   InCout:Number=0
@@ -18,6 +18,10 @@ export class AddtodoComponent {
   AddTodoForm=this.FB.group({
     title:['',Validators.required]
   })
+
+  ngOnInit() {
+
+  }
 
   getFormData(){
     this.Api.AddTodo(this.AddTodoForm.value).subscribe({

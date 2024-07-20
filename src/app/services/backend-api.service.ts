@@ -20,6 +20,9 @@ export class BackendApiService {
   AddNotes(data:any){
     return this.Http.post(`${this.SERVER_URL}/add-note`,data)
   }
+
+
+
   getAllTodos(){
     return this.Http.get(`${this.SERVER_URL}/get-all-todo`)
   }
@@ -28,5 +31,11 @@ export class BackendApiService {
   }
   AddTodo(data:any){
     return this.Http.post(`${this.SERVER_URL}/add-todo`,data)
+  }
+  DeleteTodo(id:any){
+    return this.Http.delete(`${this.SERVER_URL}/delete-todo/${id}`,)
+  }
+  editTodo(id:any,data:any){
+    return this.Http.put(`${this.SERVER_URL}/Edit-todo/${id}`,data)
   }
 }

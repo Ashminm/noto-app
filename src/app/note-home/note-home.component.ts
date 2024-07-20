@@ -1,9 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BackendApiService } from '../services/backend-api.service';
-
-
 
 @Component({
   selector: 'app-note-home',
@@ -12,31 +10,64 @@ import { BackendApiService } from '../services/backend-api.service';
 })
 export class NoteHomeComponent implements OnInit {
 
-  AllNotes:any[]=[]
-  AllTodos:any[]=[]
-  // categories:any[] = [];
-  constructor(private dialog: MatDialog,private Api:BackendApiService) {}
+  AllNotes: any[] = [];
+  AllTodos: any[] = [];
 
-  openDelete(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DeletenoteComponent, {
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+  constructor(private dialog: MatDialog, private Api: BackendApiService) {}
+
+  ngOnInit() {
+    this.loadNotes();
+    this.loadTodos();
+  }
+
+  loadNotes() {
+    this.Api.getAllNotes().subscribe((res: any) => {
+      this.AllNotes = res;
+      // console.log(this.AllNotes);
     });
   }
 
-  ngOnInit() {
-    this.Api.getAllNotes().subscribe((res:any)=>{
-      this.AllNotes=res
-      // console.log(this.AllNotes);
-    })
-    this.Api.getAllTodos().subscribe((res:any)=>{
-      this.AllTodos=res
+  loadTodos() {
+    this.Api.getAllTodos().subscribe((res: any) => {
+      this.AllTodos = res;
       // console.log(this.AllTodos);
-      
-    })
-
+    });
   }
+
+  editTodo(todo: any) {
+    this.Api.editTodo(todo._id, todo).subscribe(
+      (res: any) => {
+        const index = this.AllTodos.findIndex(t => t._id === todo._id);
+        if (index !== -1) {
+          this.AllTodos[index] = res;
+        }
+        this.loadTodos()
+      },
+      error => {
+        console.error('Error updating todo:', error);
+      }
+    );
+  }
+
+
+
+
+  openDelete(_id: string, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const dialogRef = this.dialog.open(DeletenoteComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: { _id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.AllTodos = this.AllTodos.filter(todo => todo._id !== _id);
+      }
+    });
+  }
+}
+
 
 
 
@@ -62,4 +93,4 @@ export class NoteHomeComponent implements OnInit {
   //   });
   // }
 
-}
+
