@@ -18,7 +18,6 @@ export class ViewnoteComponent implements OnInit {
   aroute.params.subscribe((res:any)=>{
     this.NoteUid=res.id
     // console.log(this.NoteUid);
-    
   })
  }
 
@@ -33,8 +32,6 @@ export class ViewnoteComponent implements OnInit {
     // console.log(this.AllNotes);
   })
  }
-
-
 
   openDelete(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DeletenoteComponent, {
