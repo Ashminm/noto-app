@@ -9,8 +9,6 @@ import { BackendApiService } from '../services/backend-api.service';
 })
 export class EditTodoComponent implements OnInit {
 
-  Todos:any={}
-
   constructor(private Api:BackendApiService){}
 
   ngOnInit(){
