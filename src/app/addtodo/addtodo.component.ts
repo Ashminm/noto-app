@@ -23,7 +23,7 @@ export class AddtodoComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  
   getFormData(){
     this.Api.AddTodo(this.AddTodoForm.value).subscribe({
       next:(res:any)=>{

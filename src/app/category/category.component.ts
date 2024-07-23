@@ -17,8 +17,7 @@ export class CategoryComponent {
       
     })
   }
-
-
+  
    getCategoryList(){
     this.Api.getAllNotes().subscribe((res:any)=>{
       this.categoryList=res.filter((item:any)=>item.category == this.categoryId)

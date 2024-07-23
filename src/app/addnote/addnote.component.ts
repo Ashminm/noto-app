@@ -19,7 +19,6 @@ export class AddnoteComponent {
     body:['',Validators.required]
   })
 
-
   getFormData(){
       this.Api.AddNotes(this.AddForm.value).subscribe({
         next:(res:any)=>{
@@ -39,7 +38,6 @@ export class AddnoteComponent {
     this.Letter="Letter"
   }
 
- 
    InpLength(){
     if(this.inputValue.length){
       this.Letter="Letters"

@@ -23,6 +23,7 @@ export class BackendApiService {
 
 
 
+
   getAllTodos(){
     return this.Http.get(`${this.SERVER_URL}/get-all-todo`)
   }
@@ -38,4 +39,6 @@ export class BackendApiService {
   editTodo(id:any,data:any){
     return this.Http.put(`${this.SERVER_URL}/Edit-todo/${id}`,data)
   }
+
+  
 }
