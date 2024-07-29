@@ -55,9 +55,6 @@ export class NoteHomeComponent implements OnInit {
 
 
 
-  
-
-
   openDelete(_id: string, enterAnimationDuration: string, exitAnimationDuration: string): void {
     const dialogRef = this.dialog.open(DeletenoteComponent, {
       width: '250px',
