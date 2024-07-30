@@ -46,8 +46,6 @@ export class AddnoteComponent {
     }
     this.InCout=this.inputValue.length 
   }
-  
-  
 
 
 }

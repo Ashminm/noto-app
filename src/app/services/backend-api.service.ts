@@ -23,7 +23,6 @@ export class BackendApiService {
 
 
 
-
   getAllTodos(){
     return this.Http.get(`${this.SERVER_URL}/get-all-todo`)
   }
@@ -41,4 +40,5 @@ export class BackendApiService {
   }
 
   
+
 }
