@@ -4,6 +4,7 @@
             <h2 class="text-2xl uppercase font-semibold "><span><i class="fa-solid fa-n bg-red-500 px-3 py-3"></i></span> oto</h2>
             <div class="mt-7">
                 <div class="py-2 px-3 rounded-md mb-3 text-gray-800 font-medium hover:bg-blue-300 bg-blue-400 flex justify-between items-center"><span><i class="fa-solid fa-clone text-xl pe-2"></i>All Notes </span><span>{{AllNotes.length}}</span></div>
+                <div class="py-2 px-3 rounded-md mb-3 text-gray-800 font-medium hover:bg-green-300 bg-green-400 flex justify-between items-center"><span><i class="fa-solid fa-list-check text-xl pe-2"></i>All Todos </span><span>{{AllTodos.length}}</span></div>
                 <div class="py-2 px-3 rounded-md mb-3 text-gray-800 font-medium hover:bg-yellow-300 bg-yellow-500 flex justify-between items-center"><span><i class="fa-solid fa-lock text-xl pe-2"></i>Privet note</span><span>0</span></div>
                 <div class="py-2 px-3 rounded-md mb-3 text-gray-800 font-medium hover:bg-red-300 bg-red-400 flex justify-between items-center"><span><i class="fa-solid fa-clock text-xl pe-2"></i>Scheduled</span><span>0</span></div>
                 <div class="py-2 px-3 rounded-md mb-3 text-gray-800 font-medium hover:bg-violet-400 bg-violet-500 flex justify-between items-center"><span><i class="fa-solid fa-box-archive text-xl pe-2"></i>Archived</span><span>0</span></div>
@@ -22,7 +23,7 @@
                   <app-addnote></app-addnote>
                 </h1>
            </div>
-           <div class="mt-4 overflow-y-scroll lg:h-[81vh]">
+           <div class="mt-4 overflow-y-scroll lg:h-[70vh]">
             <div class="lg:w-100 border p-3 mb-3 bg-gray-300 rounded-lg cursor-pointer" routerLink="/view/{{note?._id}}" *ngFor="let note of AllNotes">
                 <p class="uppercase font-black text-sm text-gray-500">{{note?.date | date:'d MMM'}}</p>
                 <h1 class="text-xl font-medium pb-2 overflow-hidden">{{note?.title}}</h1>
@@ -62,7 +63,7 @@
                         <div class="flex justify-between">
                             <div>
                                 <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel2">Noto</h5>
-                                <p class="text-sm">0 Notes</p>
+                                <p class="text-sm">6 Category</p>
                             </div>
                             <div class="flex">
                                 <!-- <h1><i class="fa-solid fa-filter text-xl lg:me-4"></i></h1> -->
@@ -70,12 +71,19 @@
                             </div>
                         </div>
                         <div class="flex flex-wrap justify-center">
-                            <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-blue-500 rounded-lg">
+                            <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-blue-500 rounded-lg" routerLink="">
                                 <div class="flex justify-between px-4 pt-4">
                                 <h1><i class="fa-solid fa-clone text-xl  text-blue-500"></i></h1>
                                 <h1 class=" text-blue-500">{{AllNotes.length}}</h1>
                                 </div>
                                 <h1 class="px-4 font-medium text-blue-500">All</h1>
+                            </div>
+                            <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-green-600 rounded-lg">
+                                <div class="flex justify-between px-4 pt-4">
+                                    <h1><i class="fa-solid fa-list-check text-xl  text-green-500"></i></h1>
+                                    <h1 class=" text-green-500">{{AllTodos.length}}</h1>
+                                    </div>
+                                    <h1 class="px-4 font-medium text-green-500">Todos</h1>
                             </div>
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-orange-500 rounded-lg">
                                 <div class="flex justify-between px-4 pt-4">
@@ -98,17 +106,14 @@
                                     </div>
                                     <h1 class="px-4 font-medium text-purple-500">Archive</h1>
                             </div>
-                            <div class="bg-gray-100 w-full h-14 border-2 border-gray-600 rounded-lg my-3 mx-2 md:w-80">
-                              <div class="flex justify-between items-center p-3">
-                                 <div class="flex justify-between items-center">
-                                    <h1><i class="fa-solid fa-trash text-xl text-gray-500"></i></h1>
-                                    <h1 class="font-medium  text-gray-500 ps-2">Trash</h1>
-                                 </div>
-                                 <div >
+                            <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-gray-600 rounded-lg">
+                                <div class="flex justify-between px-4 pt-4">
+                                    <h1><i class="fa-solid fa-trash text-xl  text-gray-500"></i></h1>
                                     <h1 class=" text-gray-500">0</h1>
-                                 </div>
-                              </div>
+                                    </div>
+                                    <h1 class="px-4 font-medium text-gray-500">Trash</h1>
                             </div>
+                            
                         </div>
                 </div>
                 </div>

@@ -11,7 +11,6 @@ const routes: Routes = [
   {path:'view/:id',component:ViewnoteComponent},
   {path:'edit/:id',component:EditTodoComponent},
   {path:'cate/:id',component:CategoryComponent},
-  {path:'dele',component:DeletenoteComponent},
   {path:'**',redirectTo:''}
 ];
 
