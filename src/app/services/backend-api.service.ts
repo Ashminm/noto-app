@@ -20,6 +20,9 @@ export class BackendApiService {
   AddNotes(data:any){
     return this.Http.post(`${this.SERVER_URL}/add-note`,data)
   }
+  editNotes(id:any,data:any){
+    return this.Http.put(`${this.SERVER_URL}/Edit-note/${id}`,data)
+  }
 
 
 
