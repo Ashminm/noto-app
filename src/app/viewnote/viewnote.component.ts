@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ViewnoteComponent implements OnInit {
 
+  hasChanges: boolean = false;
   NoteUid:any=0
   AllNotes:any={}
  constructor(private dialog: MatDialog,private aroute:ActivatedRoute,private api:BackendApiService,private toastr:ToastrService) {
@@ -24,32 +25,32 @@ export class ViewnoteComponent implements OnInit {
 
  ngOnInit() {
   this.getData()
-   
  }
 
  getData(){
   this.api.getSinglsNotes(this.NoteUid).subscribe((res:any)=>{
     this.AllNotes=res
-    console.log(this.AllNotes);
+    // console.log(this.AllNotes);
   })
  }
 
- editNotes(note: any) {
-  this.api.editNotes(note._id, note).subscribe(
-    (res: any) => {
-      const index = this.AllNotes.findIndex((t: any) => t._id === note._id);
-      if (index !== -1) {
-        this.AllNotes[index] = res;
-      }
-      this.toastr.success("Updated successfully!!");
+ onContentChange() {
+  this.hasChanges = true;
+}
+onReset(){
+  this.hasChanges=false
+}
+
+ editNotes(id: string, noteData: any) {
+  this.api.editNotes(id, noteData).subscribe(
+    (res:any)=>{
+      console.log('Note updated successfully:', res);
+       this.toastr.success("Note updated successfully!!")
+       this.hasChanges = false;
     },
-    error => {
-      console.error('Error updating note:', error);
-      if (error.status === 409) {
-        this.toastr.info(`${note.title} already exists in the list!`);
-      } else {
-        this.toastr.error('An error occurred while updating the note.');
-      }
+    (err:any)=>{
+      console.error('Error updating note:', err.error);
+      this.toastr.info("Note not updated!!")
     }
   );
 }

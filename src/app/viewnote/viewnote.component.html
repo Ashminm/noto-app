@@ -9,17 +9,23 @@
         <p class="text-sm">0 Words</p>
         </div>
     </div>
-    <div class="lg:w-100 p-3 my-5 bg-gray-200 rounded-lg cursor-pointer border-1 lg:mx-20 md:mx-4 sm:mx-3">
-        <input [(ngModel)]="AllNotes.title" class="w-full text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
+   <div class="flex justify-around items-center mt-4">
+    <span class="cursor-pointer block lg:hidden md:hidden" *ngIf="hasChanges" (click)="onReset()"><i class="fa-solid fa-xmark hover:text-white border-1 border-gray-500 duration-500 hover:bg-gray-800 text-sm px-[6px] py-[2px] rounded-full"></i></span>
+    <h1 class="text-xl font-medium ">Edit Note</h1>
+    <span class="cursor-pointer block lg:hidden md:hidden" *ngIf="hasChanges" (click)="editNotes(AllNotes?._id, AllNotes)"><i class="fa-solid fa-check hover:text-white border-1 border-gray-500 duration-500 hover:bg-gray-800 text-sm px-[5px] py-[2px] rounded-full"></i></span>
+   </div>
+    <div class="lg:w-100 p-3 my-5 mt-3 lg:bg-gray-200 md:bg-gray-200 sm:bg-transparent rounded-lg cursor-pointer lg:border-1 lg:mx-20 md:mx-4 sm:mx-3">
+        <input (input)="onContentChange()" [(ngModel)]="AllNotes.title" class="w-full text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
         <br>
-        <textarea rows="6"  name="" id=""  class="resize-none p-1 px-2 bg-transparent outline-none w-full h-auto" [(ngModel)]="AllNotes.body"></textarea>
+        <textarea (input)="onContentChange()" rows="6"  name="" id=""  class="resize-none p-1 px-2 bg-transparent outline-none w-full h-auto" [(ngModel)]="AllNotes.body"></textarea>
         <div class="flex justify-between items-end">
             <div class="pt-2 ps-2">
                 <p class="italic pb-1 text-xs text-gray-500">Created ({{AllNotes.date | date:'EEE, d MMM h:mm a'}} )</p>
                 <p class="italic text-xs text-gray-500">Accessed just now</p>
             </div>
             <div>
-                <span class="cursor-pointer" (click)="editNotes(AllNotes)"><i class="fa-solid fa-check hover:text-green-700 text-2xl"></i></span>
+                <span class="cursor-pointer hidden lg:block md:block " *ngIf="hasChanges" (click)="editNotes(AllNotes?._id, AllNotes)"><i class="fa-solid fa-check hover:text-white border-1 border-gray-500 duration-500 hover:bg-gray-800 text-2xl px-[7px] py-0.5 rounded-full"></i></span>
+                
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NoteHomeComponent implements OnInit {
 
+  hasChanges: boolean = false;
   AllNotes: any[] = [];
   AllTodos: any[] = [];
 
@@ -36,6 +37,10 @@ export class NoteHomeComponent implements OnInit {
     });
   }
 
+  onContentChange() {
+    this.hasChanges = true;
+  }
+
   editTodo(todo: any) {
     this.Api.editTodo(todo._id, todo).subscribe(
       (res: any) => {
@@ -45,6 +50,7 @@ export class NoteHomeComponent implements OnInit {
         }
         this.loadTodos()
         this.toastr.success("Updated Successfully!!")
+        this.hasChanges = false;
       },
       error => {
         console.error('Error updating todo:', error);
