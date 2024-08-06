@@ -69,11 +69,23 @@ inpLen(event: any): void {
 
 
 
-  openDelete(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DeletenoteComponent, {
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
+openDelete(_id: string | undefined, enterAnimationDuration: string, exitAnimationDuration: string): void {
+  if (!_id) {
+    console.error('Note ID is not defined.');
+    return;
   }
+
+  const dialogRef = this.dialog.open(DeletenoteComponent, {
+    width: '250px',
+    enterAnimationDuration,
+    exitAnimationDuration,
+    data: { _id }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.getData(); // Reload data to reflect the deletion
+    }
+  });
+}
 }

@@ -20,6 +20,9 @@ export class BackendApiService {
   AddNotes(data:any){
     return this.Http.post(`${this.SERVER_URL}/add-note`,data)
   }
+  DeleteNote(id:any){
+    return this.Http.delete(`${this.SERVER_URL}/delete-note/${id}`,)
+  }
   editNotes(id:any,data:any){
     return this.Http.put(`${this.SERVER_URL}/Edit-note/${id}`,data)
   }
