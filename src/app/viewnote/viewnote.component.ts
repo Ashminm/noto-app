@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ViewnoteComponent implements OnInit {
 
+  inpCont:any=0
   hasChanges: boolean = false;
   NoteUid:any=0
   AllNotes:any={}
@@ -25,6 +26,8 @@ export class ViewnoteComponent implements OnInit {
 
  ngOnInit() {
   this.getData()
+    const savedLength = sessionStorage.getItem('InputCount');
+    this.inpCont = savedLength ? JSON.parse(savedLength) : 0;
  }
 
  getData(){
@@ -46,6 +49,7 @@ onReset(){
     (res:any)=>{
       console.log('Note updated successfully:', res);
        this.toastr.success("Note updated successfully!!")
+       this.getData()
        this.hasChanges = false;
     },
     (err:any)=>{
@@ -53,6 +57,13 @@ onReset(){
       this.toastr.info("Note not updated!!")
     }
   );
+}
+
+inpLen(event: any): void {
+  const inp = event.target.value.length;
+  // console.log('Input length:', inp);
+  this.inpCont = inp;
+  sessionStorage.setItem('InputCount', JSON.stringify(inp));
 }
 
 
