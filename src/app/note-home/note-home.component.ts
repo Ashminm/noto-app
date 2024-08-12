@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NoteHomeComponent implements OnInit {
 
+  TrashCount:any = sessionStorage.getItem("trashLength")
   hasChanges: boolean = false;
   AllNotes: any[] = [];
   AllTodos: any[] = [];
@@ -36,6 +37,8 @@ export class NoteHomeComponent implements OnInit {
       // console.log(this.AllTodos);
     });
   }
+
+ 
 
   onContentChange() {
     this.hasChanges = true;

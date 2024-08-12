@@ -45,6 +45,13 @@ export class BackendApiService {
     return this.Http.put(`${this.SERVER_URL}/Edit-todo/${id}`,data)
   }
 
+  getAllTrash(){
+    return this.Http.get(`${this.SERVER_URL}/get-trash-all`)
+  }
+  addTrash(data:any){
+    return this.Http.post(`${this.SERVER_URL}/add-trash-all`,data)
+  }
+
   
 
 }
