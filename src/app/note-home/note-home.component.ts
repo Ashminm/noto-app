@@ -12,16 +12,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NoteHomeComponent implements OnInit {
 
-  TrashCount:any = sessionStorage.getItem("trashLength")
   hasChanges: boolean = false;
   AllNotes: any[] = [];
   AllTodos: any[] = [];
+  TrashCount:Number=0
 
   constructor(private dialog: MatDialog, private Api: BackendApiService,private toastr:ToastrService) {}
 
   ngOnInit() {
     this.loadNotes();
     this.loadTodos();
+    this.getAlltrash()
   }
 
   loadNotes() {
@@ -36,6 +37,14 @@ export class NoteHomeComponent implements OnInit {
       this.AllTodos = res;
       // console.log(this.AllTodos);
     });
+  }
+
+  getAlltrash(){
+    this.Api.getAllTrash().subscribe((res:any)=>{
+      this.TrashCount=res.length
+      // console.log(this.TrashCount);
+      
+    })
   }
 
  

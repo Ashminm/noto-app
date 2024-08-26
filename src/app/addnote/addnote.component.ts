@@ -1,18 +1,24 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BackendApiService } from '../services/backend-api.service';
+import { ToastrService } from 'ngx-toastr';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-addnote',
   templateUrl: './addnote.component.html',
   styleUrls: ['./addnote.component.css']
 })
-export class AddnoteComponent {
+export class AddnoteComponent implements OnInit {
 
   inputValue: string = '';
   InCout:Number=0
   Letter:any
-  constructor(private FB:FormBuilder,private Api:BackendApiService){}
+  constructor(private FB:FormBuilder,private Api:BackendApiService,private toastr:ToastrService){}
+
+  ngOnInit() {
+    // this.getFormData()
+  }
 
   AddForm=this.FB.group({
     title:['',Validators.required],
@@ -24,6 +30,8 @@ export class AddnoteComponent {
         next:(res:any)=>{
           console.log(res); 
           this.AddForm.reset()
+          this.InCout=0
+          this.toastr.success("Note adedd successfully!!")
         },
         error:(err:any)=>{
           console.log(err.statusText,":Already in your note");

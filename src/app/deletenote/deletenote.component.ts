@@ -13,13 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 export class DeletenoteComponent implements OnInit {
   AllTrashs:any[]=[]
   trash:any={}
-  DeleteIdTodo: any = 0;
+  DeletionId: any = 0;
   constructor(@Inject(MAT_DIALOG_DATA) public data: { _id: string },private Api:BackendApiService,private dialogRef: MatDialogRef<DeletenoteComponent>,private router:Router,private toster:ToastrService) { 
-    this.DeleteIdTodo=data._id
+    this.DeletionId=data._id
   }
   
   ngOnInit(){
-    // console.log(this.DeleteIdTodo);
+    console.log(this.DeletionId);
 
     this.addTrash()
     
@@ -28,13 +28,15 @@ export class DeletenoteComponent implements OnInit {
 
 
   deleteTodo() {
-    this.Api.DeleteTodo(this.DeleteIdTodo).subscribe({
+    this.Api.DeleteTodo(this.DeletionId).subscribe({
       next: (res: any) => {
         console.log(res);
         this.trash=res
         this.addTrash();
         this.dialogRef.close(true);
         // this.toster.success("Delete your Task!!") 
+        this.router.navigateByUrl('')
+
       },
       error: (err: any) => {
         console.log(err);
@@ -45,7 +47,7 @@ export class DeletenoteComponent implements OnInit {
 
 
   deleteNote() {
-    this.Api.DeleteNote(this.DeleteIdTodo).subscribe({
+    this.Api.DeleteNote(this.DeletionId).subscribe({
       next: (res: any) => {
         console.log(res);
         this.trash=res
@@ -57,6 +59,21 @@ export class DeletenoteComponent implements OnInit {
       error: (err: any) => {
         console.log(err);
         this.dialogRef.close(false);
+      }
+    });
+  }
+
+  DeleteTrashItem() {
+    this.Api.DeleteTrash(this.DeletionId).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.dialogRef.close(true);
+        this.router.navigateByUrl('/trash')
+      },
+      error: (err: any) => {
+        console.log(err);
+        this.dialogRef.close(false);
+        this.router.navigateByUrl('/trash')
       }
     });
   }

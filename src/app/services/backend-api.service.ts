@@ -51,6 +51,9 @@ export class BackendApiService {
   addTrash(data:any){
     return this.Http.post(`${this.SERVER_URL}/add-trash-all`,data)
   }
+  DeleteTrash(id:any){
+    return this.Http.delete(`${this.SERVER_URL}/delete-trash/${id}`,)
+  }
 
   
 
