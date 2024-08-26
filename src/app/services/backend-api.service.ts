@@ -54,6 +54,9 @@ export class BackendApiService {
   DeleteTrash(id:any){
     return this.Http.delete(`${this.SERVER_URL}/delete-trash/${id}`,)
   }
+  emptyTrash(){
+    return this.Http.delete(`${this.SERVER_URL}/empty-trash`,)
+  }
 
   
 

@@ -15,9 +15,9 @@
     <span class="cursor-pointer block lg:hidden md:hidden" *ngIf="hasChanges" (click)="editNotes(AllNotes?._id, AllNotes)"><i class="fa-solid fa-check hover:text-white border-1 border-gray-500 duration-500 hover:bg-gray-800 text-sm px-[5px] py-[2px] rounded-full"></i></span>
    </div>
     <div class="lg:w-100 p-3 my-5 mt-3 lg:bg-gray-200 md:bg-gray-200 sm:bg-transparent rounded-lg cursor-pointer lg:border-1 lg:mx-20 md:mx-4 sm:mx-3">
-        <input (input)="onContentChange()" [(ngModel)]="AllNotes.title" class="w-full text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
+        <input #timerInput #shareInput  (input)="onContentChange()" [(ngModel)]="AllNotes.title" class="w-full text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
         <br>
-        <textarea (input)="inpLen($event)" (input)="onContentChange()" rows="6"  name="" id=""  class="resize-none p-1 px-2 bg-transparent outline-none w-full h-auto" [(ngModel)]="AllNotes.body"></textarea>
+        <textarea #textArea (input)="inpLen($event)" (input)="onContentChange()" rows="6"  class="resize-none p-1 px-2 bg-transparent outline-none w-full h-auto" [(ngModel)]="AllNotes.body"></textarea>
         <div class="flex justify-between items-end">
             <div class="pt-2 ps-2">
                 <p class="italic pb-1 text-xs text-gray-500">Created ({{AllNotes.date | date:'EEE, d MMM h:mm a'}} )</p>
@@ -97,12 +97,14 @@
     
             </div>
             <div class="overflow-scroll pe-4">
-                <div class="flex justify-between w-60 sm:w-80  ">
-                    <h1><i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4"></i></h1>
-                    <h1><i class="fa-solid fa-share-nodes text-xl"></i></h1>
-                    <h1><i class="fa-solid fa-magnifying-glass text-xl"></i></h1>
-                    <h1><i class="fa-solid fa-copy text-xl"></i></h1>
-                    <h1><i class="fa-solid fa-thumbtack text-xl"></i></h1>
+                <div class="flex justify-between w-40 sm:w-80 cursor-pointer ">
+                   <!-- <h1 (click)="setReminder(Number(timerInput?.value))"><i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4"></i></h1> -->
+
+                    <h1 (click)="shareData(shareInput.value, textArea.value)"><i class="fa-solid fa-share-nodes text-xl"></i></h1>
+                    <h1 (click)="copy(textArea)" [ngClass]="{'copied': isCopied}">
+                        <i [ngClass]="isCopied ? 'fa-solid fa-circle-check' : 'fa-solid fa-copy'" class="text-xl"></i>
+                      </h1>
+                      
                     <h1 class="cursor-pointer hover:text-red-600"  (click)="openDelete(AllNotes?._id,'0ms', '0ms')" ><i class="fa-solid fa-trash text-xl"></i></h1>
                 </div>
             </div>
@@ -110,5 +112,7 @@
     </div>
    </div>
 </section>
+
+
 
   

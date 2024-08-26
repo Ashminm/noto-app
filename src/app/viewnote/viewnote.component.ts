@@ -17,6 +17,9 @@ export class ViewnoteComponent implements OnInit {
   hasChanges: boolean = false;
   NoteUid:any=0
   AllNotes:any={}
+  isCopied: boolean = false;
+
+
  constructor(private dialog: MatDialog,private aroute:ActivatedRoute,private api:BackendApiService,private toastr:ToastrService) {
   aroute.params.subscribe((res:any)=>{
     this.NoteUid=res.id
@@ -65,6 +68,65 @@ inpLen(event: any): void {
   this.inpCont = inp;
   sessionStorage.setItem('InputCount', JSON.stringify(inp));
 }
+
+copy(textArea: HTMLTextAreaElement) {
+  const text = textArea.value;
+
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      console.log(text);
+      this.isCopied = true; 
+      setTimeout(() => {
+        this.isCopied = false; 
+      }, 3000); 
+    })
+    .catch(() => {
+      console.log('Failed to copy text');
+    });
+}
+
+
+shareData(title: string, body: string) {
+  const text = `${title}\n\n${body}`;
+
+  if (navigator.share) {
+    navigator.share({
+      title: 'Shared Note',
+      text: text,
+      url: window.location.href
+    }).then(() => {
+      console.log('Successfully shared');
+    }).catch((error) => {
+      console.log('Error sharing:', error);
+    });
+  } else {
+    // this.copyToClipboard(text);
+    console.log('Sharing not supported, content copied to clipboard instead.');
+  }
+}
+
+// reminderMessage: string | null = null;
+
+//   setReminder(minutes: number) {
+//     if (isNaN(minutes) || minutes <= 0) {
+//       this.reminderMessage = 'Please enter a valid number of minutes.';
+//       return;
+//     }
+
+//     const milliseconds = minutes * 60 * 1000; // Convert minutes to milliseconds
+
+//     setTimeout(() => {
+//       this.reminderMessage = `Reminder: ${minutes} minutes have passed.`;
+//       this.playNotificationSound(); // Optional: Play a sound for the reminder
+//     }, milliseconds);
+//   }
+
+//   playNotificationSound() {
+//     const audio = new Audio('path-to-your-notification-sound.mp3');
+//     audio.play().catch((error) => {
+//       console.log('Error playing notification sound:', error);
+//     });
+//   }
 
 
 
