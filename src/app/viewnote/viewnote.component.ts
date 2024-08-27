@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -69,21 +69,24 @@ inpLen(event: any): void {
   sessionStorage.setItem('InputCount', JSON.stringify(inp));
 }
 
-copy(textArea: HTMLTextAreaElement) {
+copy(textArea: HTMLTextAreaElement, input: HTMLInputElement) {
   const text = textArea.value;
+  const text1 = input.value;
+  const combinedText = `${text1}\n${text}`;
 
-  navigator.clipboard.writeText(text)
+  navigator.clipboard.writeText(combinedText)
     .then(() => {
       console.log(text);
       this.isCopied = true; 
       setTimeout(() => {
         this.isCopied = false; 
-      }, 3000); 
+      }, 3000); // 3 seconds
     })
     .catch(() => {
       console.log('Failed to copy text');
     });
 }
+
 
 
 shareData(title: string, body: string) {
@@ -106,27 +109,40 @@ shareData(title: string, body: string) {
 }
 
 // reminderMessage: string | null = null;
+// reminderTimeout: any; // Declare a variable to store the timeout reference
 
-//   setReminder(minutes: number) {
-//     if (isNaN(minutes) || minutes <= 0) {
-//       this.reminderMessage = 'Please enter a valid number of minutes.';
-//       return;
-//     }
-
-//     const milliseconds = minutes * 60 * 1000; // Convert minutes to milliseconds
-
-//     setTimeout(() => {
-//       this.reminderMessage = `Reminder: ${minutes} minutes have passed.`;
-//       this.playNotificationSound(); // Optional: Play a sound for the reminder
-//     }, milliseconds);
+// setReminder(minutes: number) {
+//   if (isNaN(minutes) || minutes <= 0) {
+//     this.reminderMessage = 'Please enter a valid number of minutes.';
+//     return;
 //   }
 
-//   playNotificationSound() {
-//     const audio = new Audio('path-to-your-notification-sound.mp3');
-//     audio.play().catch((error) => {
-//       console.log('Error playing notification sound:', error);
-//     });
+//   const milliseconds = minutes * 60 * 1000; // Convert minutes to milliseconds
+
+//   if (this.reminderTimeout) {
+//     clearTimeout(this.reminderTimeout); // Clear any previous timeout to avoid stacking
 //   }
+
+//   this.reminderTimeout = setTimeout(() => {
+//     this.reminderMessage = `Reminder: ${minutes} minutes have passed.`;
+//     this.playNotificationSound(); // Optional: Play a sound for the reminder
+//   }, milliseconds);
+// }
+
+// playNotificationSound() {
+//   const audio = new Audio('path-to-your-notification-sound.mp3');
+//   audio.play().catch((error) => {
+//     console.log('Error playing notification sound:', error);
+//   });
+// }
+
+// // Ensure to clear the timeout if the component is destroyed
+// ngOnDestroy() {
+//   if (this.reminderTimeout) {
+//     clearTimeout(this.reminderTimeout);
+//   }
+// }
+
 
 
 
