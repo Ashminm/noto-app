@@ -58,6 +58,11 @@ export class BackendApiService {
     return this.Http.delete(`${this.SERVER_URL}/empty-trash`,)
   }
 
+  addArchive(id: string, data: any) {
+    return this.Http.post(`${this.SERVER_URL}/add-archive/${id}`, data);
+  }
+  
+
   
 
 }

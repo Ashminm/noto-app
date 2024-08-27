@@ -25,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { TrashComponent } from './trash/trash.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { TrashComponent } from './trash/trash.component';
     CategoryComponent,
     EditTodoComponent,
     TrashComponent,
+    ArchiveComponent,
   ],
   imports: [
     BrowserModule,

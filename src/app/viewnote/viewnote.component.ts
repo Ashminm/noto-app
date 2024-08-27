@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-viewnote',
@@ -20,7 +21,7 @@ export class ViewnoteComponent implements OnInit {
   isCopied: boolean = false;
 
 
- constructor(private dialog: MatDialog,private aroute:ActivatedRoute,private api:BackendApiService,private toastr:ToastrService) {
+ constructor(private dialog: MatDialog,private aroute:ActivatedRoute,private api:BackendApiService,private toastr:ToastrService,private router:Router) {
   aroute.params.subscribe((res:any)=>{
     this.NoteUid=res.id
     // console.log(this.NoteUid);
@@ -88,7 +89,6 @@ copy(textArea: HTMLTextAreaElement, input: HTMLInputElement) {
 }
 
 
-
 shareData(title: string, body: string) {
   const text = `${title}\n\n${body}`;
 
@@ -107,6 +107,29 @@ shareData(title: string, body: string) {
     console.log('Sharing not supported, content copied to clipboard instead.');
   }
 }
+
+archived() {
+  // Assuming AllNotes contains the ID and other necessary data
+  const id = this.AllNotes._id; // Extract the ID from AllNotes
+  console.log(id);
+
+  // Call the API service to add the note to the archive
+  this.api.addArchive(id, this.AllNotes).subscribe({
+    next: (res: any) => {
+      console.log(res);
+      this.toastr.success("Note Archived");
+      this.router.navigateByUrl('/'); // Navigate to a different route if needed
+    },
+    error: (err: any) => {
+      console.log(err);
+      this.toastr.error("Failed to archive note");
+    }
+  });
+}
+
+
+
+
 
 // reminderMessage: string | null = null;
 // reminderTimeout: any; // Declare a variable to store the timeout reference
