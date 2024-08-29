@@ -16,6 +16,7 @@ export class NoteHomeComponent implements OnInit {
   AllNotes: any[] = [];
   AllTodos: any[] = [];
   TrashCount:Number=0
+  ArchiveCount:Number=0
 
   constructor(private dialog: MatDialog, private Api: BackendApiService,private toastr:ToastrService) {}
 
@@ -23,6 +24,7 @@ export class NoteHomeComponent implements OnInit {
     this.loadNotes();
     this.loadTodos();
     this.getAlltrash()
+    this.getAllArchive()
   }
 
   loadNotes() {
@@ -44,6 +46,12 @@ export class NoteHomeComponent implements OnInit {
       this.TrashCount=res.length
       // console.log(this.TrashCount);
       
+    })
+  }
+
+  getAllArchive(){
+    this.Api.getArchive().subscribe((res:any)=>{
+      this.ArchiveCount=res.length
     })
   }
 

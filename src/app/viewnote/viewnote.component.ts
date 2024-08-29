@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ViewnoteComponent implements OnInit {
 
+  isLoading = true;
   inpCont:any=0
   hasChanges: boolean = false;
   NoteUid:any=0
@@ -30,6 +31,7 @@ export class ViewnoteComponent implements OnInit {
 
  ngOnInit() {
   this.getData()
+  this.getArchiveSingle()
     const savedLength = sessionStorage.getItem('InputCount');
     this.inpCont = savedLength ? JSON.parse(savedLength) : 0;
  }
@@ -38,6 +40,15 @@ export class ViewnoteComponent implements OnInit {
   this.api.getSinglsNotes(this.NoteUid).subscribe((res:any)=>{
     this.AllNotes=res
     // console.log(this.AllNotes);
+    this.isLoading = false;
+  })
+ }
+
+ getArchiveSingle(){
+  this.api.getSinglsArchive(this.NoteUid).subscribe((res:any)=>{
+    this.AllNotes=res
+    //  console.log(this.AllNotes);
+    this.isLoading = false;
   })
  }
 
@@ -81,7 +92,7 @@ copy(textArea: HTMLTextAreaElement, input: HTMLInputElement) {
       this.isCopied = true; 
       setTimeout(() => {
         this.isCopied = false; 
-      }, 3000); // 3 seconds
+      }, 3000); 
     })
     .catch(() => {
       console.log('Failed to copy text');
@@ -108,21 +119,20 @@ shareData(title: string, body: string) {
   }
 }
 
-archived() {
-  // Assuming AllNotes contains the ID and other necessary data
-  const id = this.AllNotes._id; // Extract the ID from AllNotes
+archived(id:any) {
+  // const id = this.AllNotes._id; 
   console.log(id);
 
-  // Call the API service to add the note to the archive
   this.api.addArchive(id, this.AllNotes).subscribe({
     next: (res: any) => {
       console.log(res);
-      this.toastr.success("Note Archived");
-      this.router.navigateByUrl('/'); // Navigate to a different route if needed
+      this.toastr.success("Archived");
+      this.router.navigateByUrl('/');
     },
     error: (err: any) => {
       console.log(err);
       this.toastr.error("Failed to archive note");
+      this.toastr.info(err.error)
     }
   });
 }

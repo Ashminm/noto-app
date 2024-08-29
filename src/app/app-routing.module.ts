@@ -6,6 +6,7 @@ import { EditTodoComponent } from './edit-todo/edit-todo.component';
 import { CategoryComponent } from './category/category.component';
 import { DeletenoteComponent } from './deletenote/deletenote.component';
 import { TrashComponent } from './trash/trash.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 const routes: Routes = [
   {path:'',component:NoteHomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'edit/:id',component:EditTodoComponent},
   {path:'cate/:id',component:CategoryComponent},
   {path:'trash',component:TrashComponent},
+  {path:'archive',component:ArchiveComponent},
   {path:'**',redirectTo:''}
 ];
 

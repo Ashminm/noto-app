@@ -26,7 +26,9 @@ export class BackendApiService {
   editNotes(id:any,data:any){
     return this.Http.put(`${this.SERVER_URL}/Edit-note/${id}`,data)
   }
-
+  recoverArchive(id: string, data: any) {
+    return this.Http.post(`${this.SERVER_URL}/reco-archive/${id}`, data);
+  }
 
 
   getAllTodos(){
@@ -58,8 +60,15 @@ export class BackendApiService {
     return this.Http.delete(`${this.SERVER_URL}/empty-trash`,)
   }
 
+
   addArchive(id: string, data: any) {
     return this.Http.post(`${this.SERVER_URL}/add-archive/${id}`, data);
+  }
+  getArchive(){
+    return this.Http.get(`${this.SERVER_URL}/get-archive`)
+  }
+  getSinglsArchive(id:any){
+    return this.Http.get(`${this.SERVER_URL}/single-archive/${id}`)
   }
   
 
