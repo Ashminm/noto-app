@@ -100,21 +100,21 @@
                 <div class="flex justify-between w-40 sm:w-80 cursor-pointer ">
                     <h1 >
                         <!-- (click)="setReminder(+timerInput.value)" -->
-                        <i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4"></i>
+                        <i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4 hover:text-gray-600"></i>
                       </h1>
                       <div *ngIf="isLoading">Loading...</div>
-                      <h1 *ngIf="!isLoading && AllNotes?._id" (click)="archived(AllNotes?._id)">
-                        <i class="fa-solid fa-box-archive text-xl"></i>
+                      <h1 *ngIf="!isLoading && AllNotes?._id" (click)="archived(AllNotes?._id)" class="hover:text-gray-600">
+                        <i class="fa-solid fa-box-archive text-xl "></i>
                       </h1>
                       
 
 
-                    <h1 (click)="shareData(shareInput.value, textArea.value)"><i class="fa-solid fa-share-nodes text-xl"></i></h1>
+                    <h1 (click)="shareData(shareInput.value, textArea.value)"><i class="fa-solid fa-share-nodes text-xl hover:text-gray-600"></i></h1>
                     <h1 (click)="copy(textArea,input)" [ngClass]="{'copied': isCopied}">
-                        <i [ngClass]="isCopied ? 'fa-solid fa-circle-check' : 'fa-solid fa-copy'" class="text-xl"></i>
+                        <i [ngClass]="isCopied ? 'fa-solid fa-circle-check' : 'fa-solid fa-copy'" class="text-xl hover:text-gray-600"></i>
                       </h1>
                       
-                    <h1 class="cursor-pointer hover:text-red-600"  (click)="openDelete(AllNotes?._id,'0ms', '0ms')" ><i class="fa-solid fa-trash text-xl"></i></h1>
+                    <h1 class="cursor-pointer hover:text-gray-600"  (click)="openDelete(AllNotes?._id,'0ms', '0ms')" ><i class="fa-solid fa-trash text-xl"></i></h1>
                 </div>
             </div>
         </div>

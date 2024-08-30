@@ -70,6 +70,12 @@ export class BackendApiService {
   getSinglsArchive(id:any){
     return this.Http.get(`${this.SERVER_URL}/single-archive/${id}`)
   }
+  DeleteArchive(id:any){
+    return this.Http.delete(`${this.SERVER_URL}/delete-archive/${id}`,)
+  }
+  emptyArchive(){
+    return this.Http.delete(`${this.SERVER_URL}/empty-archive`,)
+  }
   
 
   

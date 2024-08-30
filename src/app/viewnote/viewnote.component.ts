@@ -181,10 +181,6 @@ archived(id:any) {
 
 
 openDelete(_id: string | undefined, enterAnimationDuration: string, exitAnimationDuration: string): void {
-  if (!_id) {
-    console.error('Note ID is not defined.');
-    return;
-  }
 
   const dialogRef = this.dialog.open(DeletenoteComponent, {
     width: '250px',
@@ -195,7 +191,7 @@ openDelete(_id: string | undefined, enterAnimationDuration: string, exitAnimatio
 
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      this.getData(); // Reload data to reflect the deletion
+      this.getData();
     }
   });
 }

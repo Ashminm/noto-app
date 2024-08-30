@@ -19,7 +19,7 @@ export class DeletenoteComponent implements OnInit {
   }
   
   ngOnInit(){
-    console.log(this.DeletionId);
+    // console.log(this.DeletionId);
 
     this.addTrash()
     
@@ -30,7 +30,7 @@ export class DeletenoteComponent implements OnInit {
   deleteTodo() {
     this.Api.DeleteTodo(this.DeletionId).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.trash=res
         this.addTrash();
         this.dialogRef.close(true);
@@ -49,7 +49,7 @@ export class DeletenoteComponent implements OnInit {
   deleteNote() {
     this.Api.DeleteNote(this.DeletionId).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.trash=res
         this.addTrash();
         this.dialogRef.close(true);
@@ -66,7 +66,7 @@ export class DeletenoteComponent implements OnInit {
   DeleteTrashItem() {
     this.Api.DeleteTrash(this.DeletionId).subscribe({
       next: (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.dialogRef.close(true);
         this.router.navigateByUrl('/trash')
       },
@@ -78,8 +78,22 @@ export class DeletenoteComponent implements OnInit {
     });
   }
 
+  deleteArchiveItem(){
+    // console.log(this.DeletionId); 
+    this.Api.DeleteArchive(this.DeletionId).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.router.navigateByUrl("/archive")
+      },error:(err:any)=>{
+        console.log(err);
+        this.router.navigateByUrl("/archive")
+      }
+    })
+  }
+
+
   addTrash() {
-    console.log("Trash todo", this.trash); 
+    // console.log("Trash todo", this.trash); 
     this.Api.addTrash(this.trash).subscribe({
       next:(res:any)=>{
         console.log(res);
