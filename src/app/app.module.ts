@@ -26,6 +26,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { TrashComponent } from './trash/trash.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { PrivetComponent } from './privet/privet.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ArchiveComponent } from './archive/archive.component';
     EditTodoComponent,
     TrashComponent,
     ArchiveComponent,
+    PrivetComponent,
   ],
   imports: [
     BrowserModule,
