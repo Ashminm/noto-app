@@ -7,10 +7,14 @@ import { Component } from '@angular/core';
 })
 export class PrivetComponent {
 
-
+  sectionStatus:boolean=true
   logReg:boolean=false
   constructor(){}
 
+
+  sectionsStatus(){
+    this.sectionStatus=true
+  }
 
   loginRegStatus(){
    this.logReg = !this.logReg;
