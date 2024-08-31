@@ -25,7 +25,7 @@ export class ViewnoteComponent implements OnInit {
  constructor(private dialog: MatDialog,private aroute:ActivatedRoute,private api:BackendApiService,private toastr:ToastrService,private router:Router) {
   aroute.params.subscribe((res:any)=>{
     this.NoteUid=res.id
-    // console.log(this.NoteUid);
+    console.log(this.NoteUid);
   })
  }
 
@@ -119,11 +119,10 @@ shareData(title: string, body: string) {
   }
 }
 
-archived(id:any) {
+archived() {
   // const id = this.AllNotes._id; 
-  console.log(id);
 
-  this.api.addArchive(id, this.AllNotes).subscribe({
+  this.api.addArchive(this.NoteUid, this.AllNotes).subscribe({
     next: (res: any) => {
       console.log(res);
       this.toastr.success("Archived");

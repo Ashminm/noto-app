@@ -31,6 +31,7 @@ export class AddtodoComponent implements OnInit {
         this.AddTodoForm.reset() 
         this.toastr.success("Task Add!!")
         this.InCout=0
+        this.Api.FetchTodo()
       },
       error:(err:any)=>{
         console.log(err.statusText,": Already in yor Task");

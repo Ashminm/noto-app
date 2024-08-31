@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -8,12 +9,17 @@ import { HttpClient} from '@angular/common/http';
 export class BackendApiService {
 
   SERVER_URL="http://localhost:3000"
+  getHomeNote = new BehaviorSubject<any[]>([]);
+  getHomeTodo = new BehaviorSubject<any[]>([]);
 
   constructor(private Http:HttpClient) { }
 
+
+// ---- Replace to use fetchNotes() => BehaviorSubject    ----------------------------------------------------
   getAllNotes(){
     return this.Http.get(`${this.SERVER_URL}/get-all-notes`)
   }
+// ------------------------------------------------------------------------------
   getSinglsNotes(id:any){
     return this.Http.get(`${this.SERVER_URL}/get-single-notes/${id}`)
   }
@@ -30,10 +36,12 @@ export class BackendApiService {
     return this.Http.post(`${this.SERVER_URL}/reco-archive/${id}`, data);
   }
 
-
+// ------Replace to use fetchTodo() => BehaviorSubject-------------------------
   getAllTodos(){
     return this.Http.get(`${this.SERVER_URL}/get-all-todo`)
   }
+// -----------------------------------------------------------------------------
+
   getSinglsTodos(id:any){
     return this.Http.get(`${this.SERVER_URL}/get-single-todos/${id}`)
   }
@@ -78,6 +86,21 @@ export class BackendApiService {
   }
   
 
+
+  FetchNotes(){
+    return this.Http.get(`${this.SERVER_URL}/get-all-notes`).subscribe((res:any)=>{
+      this.getHomeNote.next(res)
+      // console.log(res);
+      
+    })
+  }
+  FetchTodo(){
+    return this.Http.get(`${this.SERVER_URL}/get-all-todo`).subscribe((res:any)=>{
+      this.getHomeTodo.next(res)
+      // console.log(res);
+      
+    })
+  }
   
 
 }

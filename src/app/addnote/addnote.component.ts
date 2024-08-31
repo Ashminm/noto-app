@@ -32,6 +32,7 @@ export class AddnoteComponent implements OnInit {
           this.AddForm.reset()
           this.InCout=0
           this.toastr.success("Note adedd successfully!!")
+          this.Api.FetchNotes()
         },
         error:(err:any)=>{
           console.log(err.statusText,":Already in your note");

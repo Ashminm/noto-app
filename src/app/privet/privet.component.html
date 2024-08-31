@@ -1,9 +1,14 @@
 <section *ngIf="!sectionStatus" class="h-screen flex justify-center items-center bg-gray-300 ">
     <!-- ----------------------------start------------------------------------------------ -->
-    <div *ngIf="!logReg" class="lg:w-[35%] md:w-[45%] sm:w-[100%] xs:w-[100%] lg:h-[32rem] md:h-[32rem] sm:h-[32rem] xs:h-screen rounded-2xl shadow-2xl">
+    <div *ngIf="!logReg" class="xs:w-full xs:h-screen sm:w-full sm:h-screen md:w-[45%] md:h-[32rem] lg:w-[35%] lg:h-[32rem] rounded-2xl shadow-2xl">
         <div class="p-4 flex justify-between">
             <span routerLink="/" class="cursor-pointer" title="Back"><i class="fa-solid fa-arrow-left fa-lg"></i></span>
-            <span (click)="loginRegStatus()" class="cursor-pointer" title="Rotate"><i class="fa-solid fa-rotate fa-lg"></i></span>
+            <!-- <span (click)="loginRegStatus()" class="cursor-pointer" title="Rotate"><i class="fa-solid fa-rotate fa-lg"></i></span> -->
+            <h1 [matMenuTriggerFor]="menus" title="menu" class="cursor-pointer"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></h1>
+            <mat-menu #menus="matMenu">
+                <button mat-menu-item (click)="loginRegStatus()">Create passcode</button>
+                <button mat-menu-item (click)="resetCheckForm()">Reset fileds</button>
+              </mat-menu>
         </div>
         <div class="p-[50px] pt-6 text-center">
             <p ><i class="fa-solid fa-user-lock fa-2xl text-8xl"></i></p>
@@ -11,14 +16,57 @@
                 <h1 class="text-xl font-semibold tracking-wide">Enter your passcode</h1>
                 <p class="mt-2 text-gray-500">Plese enter your current Noto passcode to manage this option.</p>
             </div>
-            <div class="flex justify-center items-center mt-5">
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-            </div>
+            <form [formGroup]="checkPasscodeForm" class="flex justify-center items-center mt-5">
+                <div class="m-1 me-3 "><input formControlName="passcode1" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+                <div class="m-1 me-3 "><input formControlName="passcode2" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+                <div class="m-1 me-3 "><input formControlName="passcode3" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+                <div class="m-1 me-3 "><input formControlName="passcode4" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+            </form>
+                <div class="mt-2 cursor-pointer"><i *ngIf="checkPasscodeForm.valid" (click)="getCheckpasscodeData()" class="fa-solid fa-arrow-right border-1 border-gray-400 py-[15px] px-[16px] rounded-full text-gray-900 hover:text-lime-50 hover:bg-gray-800 duration-500"></i></div>
             <div class="mt-4">
-                <h1 class="text-gray-600 cursor-pointer">Forgot passcode?</h1>
+                <h1 class="text-gray-600 cursor-pointer hover:underline hover:text-blue-700" data-toggle="modal" data-target="#exampleModalCenter1">Forgot passcode?</h1>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Passcode recovery</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="text-start text-xl mb-2">Old Passcode</h3>
+                            <form class="flex">
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                
+                              </form>
+
+                            <div class="mt-4">
+                                <h3 class="text-start text-xl mb-2">New Passcode</h3>
+                            <form class="flex">
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                <div class="m-1 me-3 "><input minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-100" ></div>
+                                
+                              </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Update passcode</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>   
     </div>
@@ -28,24 +76,30 @@
     <div *ngIf="logReg" class="lg:w-[35%] md:w-[45%] sm:w-[100%] xs:w-[100%] lg:h-[32rem] md:h-[32rem] sm:h-[32rem] xs:h-screen rounded-2xl shadow-2xl">
         <div class="p-4 flex justify-between">
             <span routerLink="/" class="cursor-pointer" title="Back"><i class="fa-solid fa-arrow-left fa-lg"></i></span>
-            <span (click)="loginRegStatus()" class="cursor-pointer" title="Rotate"><i class="fa-solid fa-rotate fa-lg"></i></span>
+             <h1 [matMenuTriggerFor]="menu" title="menu" class="cursor-pointer"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></h1>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="loginRegStatus()">Unlock passcode</button>
+                <button mat-menu-item (click)="resetForm()">Reset fileds</button>
+              </mat-menu>
         </div>
         <div class="p-[50px] pt-6 text-center">
             <p ><i class="fa-solid fa-user-lock fa-2xl text-8xl"></i></p>
             <div class="mt-4">
                 <h1 class="text-xl font-semibold tracking-wide">Create a passcode</h1>
-                <p class="mt-2 text-gray-500">Plese enter any 4 digit that ypu will use to unlock privet note.</p>
+                <p class="mt-2 text-gray-500">Plese enter any 4 digit that you will use to unlock privet note.</p>
             </div>
-            <div class="flex justify-center items-center mt-5">
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-                <div class="m-1 me-3 "><input type="text" maxlength="1" minlength="1" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
-            </div>
-            
+            <form [formGroup]="PasscodeForm" class="flex justify-center items-center mt-5">
+                <div class="m-1 me-3 "><input formControlName="passcode1" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+                <div class="m-1 me-3 "><input formControlName="passcode2" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+                <div class="m-1 me-3 "><input formControlName="passcode3" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+                <div class="m-1 me-3 "><input formControlName="passcode4" minlength="1" maxlength="1" type="text" class="w-12 h-12 text-xl text-center outline-slate-800-100 border-2 border-gray-500 rounded-lg bg-gray-200" ></div>
+            </form>
+                <div class="mt-8 cursor-pointer"><i *ngIf="PasscodeForm.valid" (click)="getpasscodeData()" class="fa-solid fa-arrow-right border-1 border-gray-400 py-[15px] px-[16px] rounded-full text-gray-900 hover:text-lime-50 hover:bg-gray-800 duration-500"></i></div>
         </div>
     </div>
 
+
+    
     <!-- ---------------------------------end------------------------------------------- -->
 </section>
 
@@ -55,9 +109,13 @@
 <section *ngIf="sectionStatus">
     <section>
         <div class="p-4">
-            <div class="flex justify-between">
-                <h1 class="text-3xl mb-4">Privet Notes</h1>
-                <button mat-stroked-button  >Delete All</button>
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl">Privet Notes</h1>
+                <div class="flex">
+                    <button (click)="clearStatus()"  class="me-4" ><i class="fa-solid fa-lock hover:text-gray-400 "></i></button>
+                    <button mat-stroked-button  >Delete All</button>
+                </div>
+                
             </div>
     
             <div  >

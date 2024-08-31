@@ -25,17 +25,21 @@ export class NoteHomeComponent implements OnInit {
     this.loadTodos();
     this.getAlltrash()
     this.getAllArchive()
+    
+    
   }
 
   loadNotes() {
-    this.Api.getAllNotes().subscribe((res: any) => {
+    this.Api.FetchNotes()
+    this.Api.getHomeNote.subscribe((res: any) => {
       this.AllNotes = res;
       // console.log(this.AllNotes);
     });
   }
 
   loadTodos() {
-    this.Api.getAllTodos().subscribe((res: any) => {
+    this.Api.FetchTodo()
+    this.Api.getHomeTodo.subscribe((res: any) => {
       this.AllTodos = res;
       // console.log(this.AllTodos);
     });
