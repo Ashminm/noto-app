@@ -102,24 +102,3 @@ export class NoteHomeComponent implements OnInit {
 }
 
 
-
-
-
-
-  // GetCategory() {
-  //   this.Api.getAllNotes().subscribe((res: any) => {
-  //     if (res && res.length) {
-  //       res.forEach(({ category }: any) => {
-  //         if (!this.categories.some(cat => cat.name === category)) {
-  //           this.categories.push({ name: category, length: category.length });
-  //         }
-  //       });
-  //       console.log(this.categories);
-        
-  //     } else {
-  //       console.error("No Category.");
-  //     }
-  //   });
-  // }
-
-
