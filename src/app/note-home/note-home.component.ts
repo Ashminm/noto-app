@@ -24,9 +24,7 @@ export class NoteHomeComponent implements OnInit {
     this.loadNotes();
     this.loadTodos();
     this.getAlltrash()
-    this.getAllArchive()
-    
-    
+    this.getAllArchive()   
   }
 
   loadNotes() {
@@ -59,7 +57,6 @@ export class NoteHomeComponent implements OnInit {
     })
   }
 
- 
 
   onContentChange() {
     this.hasChanges = true;
@@ -82,8 +79,6 @@ export class NoteHomeComponent implements OnInit {
       }
     );
   }
-
-
 
   openDelete(_id: string, enterAnimationDuration: string, exitAnimationDuration: string): void {
     const dialogRef = this.dialog.open(DeletenoteComponent, {

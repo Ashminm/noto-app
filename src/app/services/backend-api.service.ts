@@ -14,7 +14,6 @@ export class BackendApiService {
 
   constructor(private Http:HttpClient) { }
 
-
 // ---- Replace to use fetchNotes() => BehaviorSubject    ----------------------------------------------------
   getAllNotes(){
     return this.Http.get(`${this.SERVER_URL}/get-all-notes`)
@@ -94,6 +93,7 @@ export class BackendApiService {
       
     })
   }
+ 
   FetchTodo(){
     return this.Http.get(`${this.SERVER_URL}/get-all-todo`).subscribe((res:any)=>{
       this.getHomeTodo.next(res)
