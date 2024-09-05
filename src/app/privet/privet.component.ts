@@ -23,7 +23,6 @@ ngOnInit() {
    this.logReg = !this.logReg;
   }
 
-
   PasscodeForm=this.FB.group({
     passcode1:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(1),Validators.maxLength(1)]],
     passcode2:['',[Validators.required,Validators.pattern('[0-9]*'),Validators.minLength(1),Validators.maxLength(1)]],
@@ -71,4 +70,7 @@ ngOnInit() {
   }
   
 
+
+
+  
 }
