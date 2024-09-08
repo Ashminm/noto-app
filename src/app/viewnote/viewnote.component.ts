@@ -135,6 +135,27 @@ archived() {
     }
   });
 }
+addtoPrivet() {
+  // const id = this.AllNotes._id; 
+  if(sessionStorage.getItem('token')){
+    this.api.addtoPrivet(this.NoteUid, this.AllNotes).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.toastr.success("Note is privet");
+        this.router.navigateByUrl('/');
+      },
+      error: (err: any) => {
+        console.log(err);
+        this.toastr.error("Faileded!! please enter your passscode!! ",err.error);
+        this.router.navigateByUrl('/privet')
+      }
+    });
+  }else{
+    this.toastr.info("Please enter your passcode!!")
+  }
+
+  
+}
 
 
 

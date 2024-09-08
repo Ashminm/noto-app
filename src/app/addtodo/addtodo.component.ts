@@ -34,6 +34,7 @@ export class AddtodoComponent implements OnInit {
         this.Api.FetchTodo()
       },
       error:(err:any)=>{
+        this.toastr.error("Added Faild!",err.error)
         console.log(err.statusText,": Already in yor Task");
       }
     })

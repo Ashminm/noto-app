@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -84,6 +84,37 @@ export class BackendApiService {
     return this.Http.delete(`${this.SERVER_URL}/empty-archive`,)
   }
   
+
+  createPasscode(data:any){
+    return this.Http.post(`${this.SERVER_URL}/create-passcode`,data)
+  }
+  checkPasscode(data:any){
+    return this.Http.post(`${this.SERVER_URL}/check-passcode`,data)
+  }
+  forgotpasscode(oldPasscode: any, newPasscode: any) {
+    const passcodeData = { oldPasscode, newPasscode };
+    return this.Http.put(`${this.SERVER_URL}/forgot-passcode`, passcodeData);
+  }
+// --------------------- middileware token header set -----------------------
+appentTokenHeader(){
+  const token=sessionStorage.getItem('token')
+  let headers= new HttpHeaders()
+  if(token){
+    headers=headers.append("Authorization",`Bearer ${token}`)
+  }
+  return {headers}
+}
+// -----------------------
+  addtoPrivet(id: string, data: any) {
+    return this.Http.post(`${this.SERVER_URL}/add-to-privet/${id}`,data,this.appentTokenHeader());
+  }
+  getPrivetNote(){
+    return this.Http.get(`${this.SERVER_URL}/get-privet-notes`,this.appentTokenHeader())
+  }
+  
+  
+
+
 
 
   FetchNotes(){

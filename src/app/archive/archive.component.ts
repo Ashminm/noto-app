@@ -24,7 +24,7 @@ export class ArchiveComponent implements OnInit {
   loadArchiveData(){
     this.Api.getArchive().subscribe((res:any)=>{
     this.AllArchive=res
-    // console.log(this.AllArchive);
+    console.log(this.AllArchive);
     })
   }
 
