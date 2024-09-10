@@ -17,6 +17,7 @@ export class NoteHomeComponent implements OnInit {
   AllTodos: any[] = [];
   TrashCount:Number=0
   ArchiveCount:Number=0
+  PrivetCount:any=sessionStorage.getItem('privetCount')||0
 
   constructor(private dialog: MatDialog, private Api: BackendApiService,private toastr:ToastrService) {}
 
@@ -24,7 +25,7 @@ export class NoteHomeComponent implements OnInit {
     this.loadNotes();
     this.loadTodos();
     this.getAlltrash()
-    this.getAllArchive()   
+    this.getAllArchive()  
   }
 
   loadNotes() {

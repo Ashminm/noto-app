@@ -22,9 +22,11 @@ ngOnInit() {
   this.loadaPrivetData()
 }
   loadaPrivetData(){
-    this.Api.getPrivetNote().subscribe((res:any)=>{
+    this.Api.getPrivetNotes()
+    this.Api.getPrivetNote.subscribe((res:any)=>{
       this.PrivetNote=res
-      console.log(this.PrivetNote);
+      // console.log(this.PrivetNote);
+      sessionStorage.setItem('privetCount',res.length)
       
     })
   }

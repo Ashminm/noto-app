@@ -147,7 +147,6 @@ addtoPrivet() {
       error: (err: any) => {
         console.log(err);
         this.toastr.error("Faileded!! please enter your passscode!! ",err.error);
-        this.router.navigateByUrl('/privet')
       }
     });
   }else{

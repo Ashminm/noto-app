@@ -11,6 +11,7 @@ export class BackendApiService {
   SERVER_URL="http://localhost:3000"
   getHomeNote = new BehaviorSubject<any[]>([]);
   getHomeTodo = new BehaviorSubject<any[]>([]);
+  getPrivetNote = new BehaviorSubject<any[]>([]);
 
   constructor(private Http:HttpClient) { }
 
@@ -108,13 +109,13 @@ appentTokenHeader(){
   addtoPrivet(id: string, data: any) {
     return this.Http.post(`${this.SERVER_URL}/add-to-privet/${id}`,data,this.appentTokenHeader());
   }
-  getPrivetNote(){
-    return this.Http.get(`${this.SERVER_URL}/get-privet-notes`,this.appentTokenHeader())
+  getPrivetNotes(){
+    return this.Http.get(`${this.SERVER_URL}/get-privet-notes`,this.appentTokenHeader()).subscribe((res:any)=>{
+      this.getPrivetNote.next(res)
+    })
   }
   
   
-
-
 
 
   FetchNotes(){
