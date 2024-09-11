@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import { BackendApiService } from '../services/backend-api.service';
 import { ToastrService } from 'ngx-toastr';
+import { DeletenoteComponent } from '../deletenote/deletenote.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-privet',
@@ -14,7 +16,13 @@ export class PrivetComponent implements OnInit {
   PrivetNote:any[]=[]
   sectionStatus:boolean=false
   logReg:boolean=false
-  constructor(private FB:FormBuilder,private Api:BackendApiService,private toastr:ToastrService){}
+  SinglePrivetData:any={}
+
+  inputValue: string = '';
+  InCout:Number=0
+  Letter:any
+
+  constructor(private FB:FormBuilder,private Api:BackendApiService,private toastr:ToastrService,private dialog: MatDialog){}
 
 ngOnInit() {
   this.sectionStatus = sessionStorage.getItem('sectionStatus') === 'true' ? true : false;
@@ -161,6 +169,100 @@ ngOnInit() {
   }
   resetnew(){
     this.NewforgotPasscodeform.reset()
+  }
+
+  UnPrivetNote(id:any){
+    console.log(id);
+    this.SinglePrivetData=this.PrivetNote.find((item:any)=>item._id===id)
+    // console.log(this.SinglePrivetData);
+    if(this.SinglePrivetData){
+      this.Api.unPrivet(id,this.SinglePrivetData).subscribe({
+        next:(res:any)=>{
+          console.log(res);
+          this.loadaPrivetData()
+          this.toastr.success("UnPriveted!!")
+        },error:(err:any)=>{
+          console.log(err);
+          this.toastr.error(err.error)
+        }
+      })
+    }else{
+      console.log("not found note")
+    }
+    
+    
+  }
+
+  emptyPrivets(){
+    const PrivLen=this.PrivetNote.length>0
+    if(PrivLen){
+      this.Api.emptyPrivet().subscribe({
+        next:(res:any)=>{
+          console.log(res);
+          this.toastr.success(`Deleted ${res.deletedCount} items!`)
+          this.loadaPrivetData()
+        },error:(err:any)=>{
+          this.toastr.error("Deleteion Faild!")
+          console.log(err);
+        }
+      })
+    }else{
+      this.toastr.info("No items in your privet section")
+    }
+  }
+
+
+
+  openPrivet(_id:string,enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const dialogRef=this.dialog.open(DeletenoteComponent,{
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:{_id}
+    })
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result){
+        this.PrivetNote=this.PrivetNote.filter(privet=>privet._id !== _id);
+      }
+    })
+  }
+
+  newPrivetNoteForm=this.FB.group({
+    title:['',Validators.required],
+    body:['',Validators.required]
+  })
+
+  getNewPrivet(){
+    console.log(this.newPrivetNoteForm.value);
+    this.Api.newPrivetNote(this.newPrivetNoteForm.value).subscribe({
+      next:(res:any)=>{
+        console.log(res); 
+        this.newPrivetNoteForm.reset()
+        this.InCout=0
+        this.toastr.success("Privet note adedd successfully!!")
+        this.Api.getPrivetNotes()
+      },
+      error:(err:any)=>{
+        console.log(err.statusText,":Already in your privet");
+        
+      }
+    })
+  }
+
+
+  resetFm(){
+    this.newPrivetNoteForm.reset()
+    this.Letter="Letter"
+    this.InCout=0
+  }
+
+  InpLength(){
+    if(this.inputValue.length){
+      this.Letter="Letters"
+    }else{
+      this.Letter="Letter"
+    }
+    this.InCout=this.inputValue.length 
   }
   
 }

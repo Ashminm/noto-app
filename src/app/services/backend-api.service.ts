@@ -109,6 +109,19 @@ appentTokenHeader(){
   addtoPrivet(id: string, data: any) {
     return this.Http.post(`${this.SERVER_URL}/add-to-privet/${id}`,data,this.appentTokenHeader());
   }
+  unPrivet(id:any,data:any){
+    return this.Http.post(`${this.SERVER_URL}/unPrivet-note/${id}`, data,this.appentTokenHeader());
+  }
+  DeletePrivet(id:any){
+    return this.Http.delete(`${this.SERVER_URL}/dete-privet/${id}`,this.appentTokenHeader())
+  }
+  emptyPrivet(){
+    return this.Http.delete(`${this.SERVER_URL}/empty-privet`,this.appentTokenHeader())
+  }
+  newPrivetNote(data:any){
+    return this.Http.post(`${this.SERVER_URL}/new-privet-note`,data)
+  }
+
   getPrivetNotes(){
     return this.Http.get(`${this.SERVER_URL}/get-privet-notes`,this.appentTokenHeader()).subscribe((res:any)=>{
       this.getPrivetNote.next(res)

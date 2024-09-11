@@ -128,9 +128,41 @@
         <div class="p-4">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl">Privet Notes</h1>
-                <div class="flex">
+                <div class="flex items-center">
+
+                  <p type="button" class="me-4"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"><i class="fa-solid fa-circle-plus text-xl hover:text-gray-400"></i></p>
+
+                              <div class="offcanvas offcanvas-bottom h-1/2" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                                <form [formGroup]="newPrivetNoteForm">
+                                  <div class="offcanvas-header">
+                                    <div>
+                                        <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel">New privet note</h5>
+                                        <!-- <p class="text-sm">{{InCout}} {{Letter}}</p> -->
+                                    </div>
+                                    <div>
+                                      <button type="submit" class="btn py-1" *ngIf="newPrivetNoteForm.valid" (click)="getNewPrivet()"><i class="fa-solid fa-check text-2xl text-green-600"></i></button>
+                                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="resetFm()"></button>
+                                    </div>
+                                  </div>
+                                  <div class="offcanvas-body small w-auto">
+                                        <div>
+                                            <div class=" mb-3">
+                                                <input type="text" formControlName="title" placeholder="Title" class="px-3 pt-3 border-0 outline-none w-full text-lg ">
+                                                <div class="text-red-500 ps-3 text-[12px]" *ngIf="newPrivetNoteForm.get('title')?.invalid && newPrivetNoteForm.get('title')?.touched">Invalid Title</div>
+                                            </div>
+                                            <div class="mb-4">
+                                                <textarea type="text" [(ngModel)]="inputValue" (ngModelChange)="InpLength()" formControlName="body" placeholder="Body" class="px-3 pt-3  outline-none border-0 text-sm w-full"></textarea>
+                                                <div class="text-red-500 ps-3 text-[12px]" *ngIf="newPrivetNoteForm.get('body')?.invalid && newPrivetNoteForm.get('body')?.touched">Invalid Body</div>
+                                            </div>
+                                            <p class="italic pb-1 text-xs">Created just now</p>
+                                            <p class="italic text-xs">Accessed just now</p>
+                                        </div>
+                                  </div>
+                                </form>
+                              </div>
+
                     <button (click)="clearStatus()"  class="me-4" ><i class="fa-solid fa-lock hover:text-gray-400 "></i></button>
-                    <button mat-stroked-button  >Delete All</button>
+                    <button mat-stroked-button (click)="emptyPrivets()" >Delete All</button>
                 </div>
                 
             </div>
@@ -141,9 +173,9 @@
                   <div class="flex justify-between mb-3">
                     <h1 class="pb-2">{{item?.title.slice(0,54)}}</h1>
                     <div class="flex items-center">
-                        <p class="cursor-pointer me-4" > <i class="fa-solid fa-unlock"></i>
+                        <p class="cursor-pointer me-4" (click)="UnPrivetNote(item?._id)" > <i class="fa-solid fa-unlock"></i>
                     <h1 class="cursor-pointer">
-                      <p ><i class="fa-solid fa-trash"></i></p>
+                      <p (click)="openPrivet(item?._id,'0ms', '0ms')"><i class="fa-solid fa-trash"></i></p>
                     </h1>
                     </div>
                   </div>

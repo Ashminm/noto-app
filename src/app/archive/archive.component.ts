@@ -24,7 +24,7 @@ export class ArchiveComponent implements OnInit {
   loadArchiveData(){
     this.Api.getArchive().subscribe((res:any)=>{
     this.AllArchive=res
-    console.log(this.AllArchive);
+    // console.log(this.AllArchive);
     })
   }
 
@@ -43,7 +43,7 @@ export class ArchiveComponent implements OnInit {
           this.route.navigateByUrl('/')
         },error:(err:any)=>{
           console.log(err);
-          
+          this.toastr.error(err.error)
         }
       })
     }else{
@@ -57,7 +57,7 @@ export class ArchiveComponent implements OnInit {
       this.Api.emptyArchive().subscribe({
         next:(res:any)=>{
           console.log(res);
-          this.toastr.success(`Deleted ${res.deletedCount} items `)
+          this.toastr.success(`Deleted ${res.deletedCount} items! `)
           this.loadArchiveData()
         },error:(err:any)=>{
           console.log(err);

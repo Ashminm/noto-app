@@ -83,14 +83,29 @@ export class DeletenoteComponent implements OnInit {
     this.Api.DeleteArchive(this.DeletionId).subscribe({
       next:(res:any)=>{
         console.log(res);
+        this.dialogRef.close(true);
         this.router.navigateByUrl("/archive")
       },error:(err:any)=>{
         console.log(err);
+        this.dialogRef.close(false);
         this.router.navigateByUrl("/archive")
       }
     })
   }
 
+  deletePrivetItem(){
+    this.Api.DeletePrivet(this.DeletionId).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.dialogRef.close(true);
+        this.router.navigateByUrl("/privet")
+      },error:(err:any)=>{
+        console.log(err);
+        this.dialogRef.close(false);
+        this.router.navigateByUrl("/privet")
+      }
+    })
+  }
 
   addTrash() {
     // console.log("Trash todo", this.trash); 
