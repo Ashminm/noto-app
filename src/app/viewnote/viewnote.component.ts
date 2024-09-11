@@ -73,7 +73,7 @@ onReset(){
     },
     (err:any)=>{
       console.error('Error updating note:', err.error);
-      this.toastr.info("Note not updated!!")
+      this.toastr.error(err.error);
     }
   );
 }
