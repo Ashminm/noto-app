@@ -27,7 +27,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { TrashComponent } from './trash/trash.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { PrivetComponent } from './privet/privet.component';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,11 @@ import { PrivetComponent } from './privet/privet.component';
       timeOut: 3000, 
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    }) 
+    }) ,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

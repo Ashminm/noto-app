@@ -12,12 +12,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NoteHomeComponent implements OnInit {
 
+  inputValue: string = '';
   hasChanges: boolean = false;
   AllNotes: any[] = [];
   AllTodos: any[] = [];
   TrashCount:Number=0
   ArchiveCount:Number=0
   PrivetCount:any=sessionStorage.getItem('privetCount')||0
+// --------------------day wishing----------------------
+  Wish:any=""
+  today=new Date()
+  curHr= this.today.getHours()
+  curDate=this.today.toDateString()
 
   constructor(private dialog: MatDialog, private Api: BackendApiService,private toastr:ToastrService) {}
 
@@ -26,6 +32,16 @@ export class NoteHomeComponent implements OnInit {
     this.loadTodos();
     this.getAlltrash()
     this.getAllArchive()  
+// ---------------Day wishing----------------------------- 
+    if(this.curHr <12 && this.curHr >= 5){
+      this.Wish="Good Morning"
+    }else if(this.curHr <18 && this.curHr >=12){
+      this.Wish="Good Afternoon"
+    }else if(this.curHr >=18 && this.curHr <19){
+      this.Wish="Good Evening"
+    }else{
+      this.Wish="Good Night"
+    }
   }
 
   loadNotes() {
@@ -64,22 +80,23 @@ export class NoteHomeComponent implements OnInit {
   }
 
   editTodo(todo: any) {
-    this.Api.editTodo(todo._id, todo).subscribe(
-      (res: any) => {
+    this.Api.editTodo(todo._id, todo).subscribe({
+      next: (res: any) => {
         const index = this.AllTodos.findIndex(t => t._id === todo._id);
         if (index !== -1) {
           this.AllTodos[index] = res;
         }
-        this.loadTodos()
-        this.toastr.success("Updated Successfully!!")
+        this.loadTodos();
+        this.toastr.success("Updated Successfully!!");
         this.hasChanges = false;
       },
-      error => {
-        console.error('Error updating todo:', error);
-        this.toastr.info(`${todo.title} is Already Exist in the list!!`)
+      error: (err: any) => {
+        console.error("Error updating todo", err);
+        this.toastr.error(err.error);
       }
-    );
+    });
   }
+  
 
   openDelete(_id: string, enterAnimationDuration: string, exitAnimationDuration: string): void {
     const dialogRef = this.dialog.open(DeletenoteComponent, {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component,VERSION } from '@angular/core';
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,12 +7,15 @@ import { BackendApiService } from '../services/backend-api.service';
 import { ToastrService } from 'ngx-toastr';
 
 
+
 @Component({
   selector: 'app-viewnote',
   templateUrl: './viewnote.component.html',
-  styleUrls: ['./viewnote.component.css']
+  styleUrls: ['./viewnote.component.css'],
 })
 export class ViewnoteComponent implements OnInit {
+  selectedDate: any;
+  selectedTime: string = '00:00';
 
   isLoading = true;
   inpCont:any=0
@@ -34,6 +37,7 @@ export class ViewnoteComponent implements OnInit {
   this.getArchiveSingle()
     const savedLength = sessionStorage.getItem('InputCount');
     this.inpCont = savedLength ? JSON.parse(savedLength) : 0;
+    
  }
 
  getData(){
@@ -151,53 +155,8 @@ addtoPrivet() {
     });
   }else{
     this.toastr.info("Please enter your passcode!!")
-  }
-
-  
+  }  
 }
-
-
-
-
-
-// reminderMessage: string | null = null;
-// reminderTimeout: any; // Declare a variable to store the timeout reference
-
-// setReminder(minutes: number) {
-//   if (isNaN(minutes) || minutes <= 0) {
-//     this.reminderMessage = 'Please enter a valid number of minutes.';
-//     return;
-//   }
-
-//   const milliseconds = minutes * 60 * 1000; // Convert minutes to milliseconds
-
-//   if (this.reminderTimeout) {
-//     clearTimeout(this.reminderTimeout); // Clear any previous timeout to avoid stacking
-//   }
-
-//   this.reminderTimeout = setTimeout(() => {
-//     this.reminderMessage = `Reminder: ${minutes} minutes have passed.`;
-//     this.playNotificationSound(); // Optional: Play a sound for the reminder
-//   }, milliseconds);
-// }
-
-// playNotificationSound() {
-//   const audio = new Audio('path-to-your-notification-sound.mp3');
-//   audio.play().catch((error) => {
-//     console.log('Error playing notification sound:', error);
-//   });
-// }
-
-// // Ensure to clear the timeout if the component is destroyed
-// ngOnDestroy() {
-//   if (this.reminderTimeout) {
-//     clearTimeout(this.reminderTimeout);
-//   }
-// }
-
-
-
-
 
 openDelete(_id: string | undefined, enterAnimationDuration: string, exitAnimationDuration: string): void {
 
@@ -214,4 +173,15 @@ openDelete(_id: string | undefined, enterAnimationDuration: string, exitAnimatio
     }
   });
 }
+
+logDate(event: any) {
+  const selected = new Date(event.value); // Convert the selected value to a Date object
+  console.log('Selected Date:', selected.toDateString()); // Log the date in a readable format
+}
+
+AMPM(event:any){
+  console.log(event.value);
+  
+}
+
 }

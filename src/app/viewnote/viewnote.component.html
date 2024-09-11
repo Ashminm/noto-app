@@ -98,12 +98,43 @@
     
             </div>
             <div class="overflow-scroll pe-4">
-                <div class="flex justify-between w-40 sm:w-80 cursor-pointer ">
+                <div class="flex justify-between w-72  cursor-pointer ">
                     <h1 (click)="addtoPrivet()" title="add to privet" class="cursor-pointer hover:text-gray-600" ><i class="fa-solid fa-lock text-xl"></i></h1>
-                    <h1 >
-                        <!-- (click)="setReminder(+timerInput.value)" -->
+                    <h1 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom1" aria-controls="offcanvasBottom1">
                         <i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4 hover:text-gray-600"></i>
                       </h1>
+
+
+                      <div class="offcanvas offcanvas-bottom h-1/2" tabindex="-1" id="offcanvasBottom1" aria-labelledby="offcanvasBottomLabel1">
+                        <div class="offcanvas-header">
+                          <h5 class="offcanvas-title" id="offcanvasBottomLabel1">Offcanvas bottom</h5>
+                          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body w-auto">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="logDate($event)">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                          <div class="">
+                            <input type="text" class="w-[60px] h-[45px] border-2 border-gray-900 text-4xl text-center rounded-xl"><span class="px-2 font-bold text-4xl">:</span>
+                            <input type="text" class="w-[60px] h-[45px] border-2 border-gray-900 text-4xl text-center rounded-xl" >
+                         </div>
+                        <div class="">
+                            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="AMPM">
+                                <mat-button-toggle value="AM">AM</mat-button-toggle>
+                                <mat-button-toggle value="PM">PM</mat-button-toggle>
+                              </mat-button-toggle-group>
+                              
+                        </div>
+                          
+                          
+                        </div>
+                      </div>
+                      
+            
+
                       <div *ngIf="isLoading">Loading...</div>
                       <h1 title="Add to Archive" *ngIf="!isLoading && AllNotes?._id" (click)="archived()" class="hover:text-gray-600">
                         <i class="fa-solid fa-box-archive text-xl "></i>
