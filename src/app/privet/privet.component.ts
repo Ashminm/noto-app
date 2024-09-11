@@ -233,7 +233,6 @@ ngOnInit() {
   })
 
   getNewPrivet(){
-    console.log(this.newPrivetNoteForm.value);
     this.Api.newPrivetNote(this.newPrivetNoteForm.value).subscribe({
       next:(res:any)=>{
         console.log(res); 

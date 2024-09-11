@@ -119,7 +119,7 @@ appentTokenHeader(){
     return this.Http.delete(`${this.SERVER_URL}/empty-privet`,this.appentTokenHeader())
   }
   newPrivetNote(data:any){
-    return this.Http.post(`${this.SERVER_URL}/new-privet-note`,data)
+    return this.Http.post(`${this.SERVER_URL}/new-privet-note`,data,this.appentTokenHeader())
   }
 
   getPrivetNotes(){
