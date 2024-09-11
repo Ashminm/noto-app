@@ -1,6 +1,6 @@
 <section *ngIf="!sectionStatus" class="h-screen flex justify-center items-center bg-gray-300 ">
     <!-- ----------------------------start------------------------------------------------ -->
-    <div *ngIf="!logReg" class="xs:w-full xs:h-screen sm:w-full sm:h-screen md:w-[45%] md:h-[32rem] lg:w-[35%] lg:h-[32rem] rounded-2xl shadow-2xl">
+    <div *ngIf="!logReg" class="xs:w-full xs:h-screen sm:w-full sm:h-screen md:w-[45%] md:h-[32rem] lg:w-[35%] lg:h-[32rem] rounded-2xl lg:shadow-2xl md:shadow-2xl sm:shadow-none">
         <div class="p-4 flex justify-between">
             <span routerLink="/" class="cursor-pointer" title="Back"><i class="fa-solid fa-arrow-left fa-lg"></i></span>
             <!-- <span (click)="loginRegStatus()" class="cursor-pointer" title="Rotate"><i class="fa-solid fa-rotate fa-lg"></i></span> -->
@@ -85,7 +85,7 @@
 
 <!-- ---------------------------------------------- registraion----------------------------------------- -->
 
-    <div *ngIf="logReg" class="lg:w-[35%] md:w-[45%] sm:w-[100%] xs:w-[100%] lg:h-[32rem] md:h-[32rem] sm:h-[32rem] xs:h-screen rounded-2xl shadow-2xl">
+    <div *ngIf="logReg" class="lg:w-[35%] md:w-[45%] sm:w-[100%] xs:w-[100%] lg:h-[32rem] md:h-[32rem] sm:h-[32rem] xs:h-screen rounded-2xl lg:shadow-2xl md:shadow-2xl sm:shadow-none">
         <div class="p-4 flex justify-between">
             <span routerLink="/" class="cursor-pointer" title="Back"><i class="fa-solid fa-arrow-left fa-lg"></i></span>
              <h1 [matMenuTriggerFor]="menu" title="menu" class="cursor-pointer"><i class="fa-solid fa-ellipsis-vertical fa-lg"></i></h1>
