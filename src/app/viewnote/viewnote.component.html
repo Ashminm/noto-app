@@ -15,6 +15,7 @@
     <span class="cursor-pointer block lg:hidden md:hidden" *ngIf="hasChanges" (click)="editNotes(AllNotes?._id, AllNotes)"><i class="fa-solid fa-check hover:text-white border-1 border-gray-500 duration-500 hover:bg-gray-800 text-sm px-[5px] py-[2px] rounded-full"></i></span>
    </div>
     <div class="lg:w-100 p-3 my-5 mt-3 lg:bg-gray-200 md:bg-gray-200 sm:bg-transparent rounded-lg cursor-pointer lg:border-1 lg:mx-20 md:mx-4 sm:mx-3">
+        <div *ngIf="isLoading">Loading...</div>
         <input #timerInput #input #shareInput  (input)="onContentChange()" [(ngModel)]="AllNotes.title" class="w-full text-xl font-medium p-2.5 mb-[2px] bg-transparent outline-none">
         <br>
         <textarea #textArea (input)="inpLen($event)" (input)="onContentChange()" rows="6"  class="resize-none p-1 px-2 bg-transparent outline-none w-full h-auto" [(ngModel)]="AllNotes.body"></textarea>
@@ -40,7 +41,7 @@
                 <div class="offcanvas-body small w-auto">
                         <div class="flex justify-between">
                             <div>
-                                <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel">Noto</h5>
+                                <h2 class="offcanvas-title text-2xl font-medium m-0" id="offcanvasBottomLabel">Noto</h2>
                                 <p class="text-sm">0 Notes</p>
                             </div>
                             <div class="flex">
@@ -55,40 +56,40 @@
                         <div class="flex flex-wrap justify-center">
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-blue-500 rounded-lg">
                                 <div class="flex justify-between px-4 pt-4">
-                                <h1><i class="fa-solid fa-clone text-xl  text-blue-500"></i></h1>
-                                <h1 class=" text-blue-500">0</h1>
+                                <h5 class="m-0"><i class="fa-solid fa-clone text-xl  text-blue-500"></i></h5>
+                                <h5 class=" text-blue-500">0</h5>
                                 </div>
-                                <h1 class="px-4 font-medium text-blue-500">All</h1>
+                                <h5 class="px-4 font-medium text-blue-500">All</h5>
                             </div>
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-orange-500 rounded-lg">
                                 <div class="flex justify-between px-4 pt-4">
-                                    <h1><i class="fa-solid fa-clock text-xl  text-orange-500"></i></h1>
-                                    <h1 class=" text-orange-500">0</h1>
+                                    <h1 class="m-0"><i class="fa-solid fa-clock text-xl  text-orange-500"></i></h1>
+                                    <h5 class=" text-orange-500">0</h5>
                                     </div>
-                                    <h1 class="px-4 font-medium text-orange-500">Scheduled</h1>
+                                    <h5 class="px-4 font-medium text-orange-500">Scheduled</h5>
                             </div>
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-red-500 rounded-lg">
                                 <div class="flex justify-between px-4 pt-4">
-                                    <h1><i class="fa-solid fa-lock text-xl  text-red-500"></i></h1>
-                                    <h1 class=" text-red-500">0</h1>
+                                    <h1 class="m-0"><i class="fa-solid fa-lock text-xl  text-red-500"></i></h1>
+                                    <h5 class=" text-red-500">0</h5>
                                     </div>
-                                    <h1 class="px-4 font-medium text-red-500">Private</h1>
+                                    <h5 class="px-4 font-medium text-red-500">Private</h5>
                             </div>
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-purple-600 rounded-lg">
                                 <div class="flex justify-between px-4 pt-4">
-                                    <h1><i class="fa-solid fa-box-archive text-xl  text-purple-500"></i></h1>
-                                    <h1 class=" text-purple-500">0</h1>
+                                    <h1 class="m-0"><i class="fa-solid fa-box-archive text-xl  text-purple-500"></i></h1>
+                                    <h5 class=" text-purple-500">0</h5>
                                     </div>
-                                    <h1 class="px-4 font-medium text-purple-500">Archive</h1>
+                                    <h5 class="px-4 font-medium text-purple-500">Archive</h5>
                             </div>
                             <div class="bg-gray-100 w-full h-14 border-2 border-gray-600 rounded-lg mx-3 me-4 mt-3 lg:hidden md:hidden">
-                                <div class="flex justify-between items-center p-3">
+                                <div class="flex justify-between items-center py-1 px-3">
                                    <div class="flex justify-between items-center">
                                       <h1><i class="fa-solid fa-trash text-xl text-gray-500"></i></h1>
-                                      <h1 class="font-medium  text-gray-500 ps-2">Trash</h1>
+                                      <h5 class="font-medium  text-gray-500 ps-2">Trash</h5>
                                    </div>
                                    <div >
-                                      <h1 class=" text-gray-500">0</h1>
+                                      <h5 class=" text-gray-500">0</h5>
                                    </div>
                                 </div>
                               </div>
@@ -107,30 +108,34 @@
 
                       <div class="offcanvas offcanvas-bottom h-1/2" tabindex="-1" id="offcanvasBottom1" aria-labelledby="offcanvasBottomLabel1">
                         <div class="offcanvas-header">
-                          <h5 class="offcanvas-title" id="offcanvasBottomLabel1">Offcanvas bottom</h5>
+                          <h5 class="offcanvas-title" id="offcanvasBottomLabel1">Reminder Note</h5>
                           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
-                        <div class="offcanvas-body w-auto">
-                          <mat-form-field appearance="fill">
-                            <mat-label>Choose a date</mat-label>
-                            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="logDate($event)">
-                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field>
-                          <div class="">
-                            <input type="text" class="w-[60px] h-[45px] border-2 border-gray-900 text-4xl text-center rounded-xl"><span class="px-2 font-bold text-4xl">:</span>
-                            <input type="text" class="w-[60px] h-[45px] border-2 border-gray-900 text-4xl text-center rounded-xl" >
-                         </div>
-                        <div class="">
-                            <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="AMPM">
-                                <mat-button-toggle value="AM">AM</mat-button-toggle>
-                                <mat-button-toggle value="PM">PM</mat-button-toggle>
-                              </mat-button-toggle-group>
-                              
-                        </div>
-                          
-                          
-                        </div>
+                        <form >
+                            <div class="offcanvas-body w-auto">
+                                <mat-form-field appearance="fill">
+                                  <mat-label>Choose a date</mat-label>
+                                  <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="logDate($event)">
+                                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <div class="flex">
+                                  <div class="me-2">
+                                      <input type="text" placeholder="02" class="w-[60px] h-[48px] border-2 border-gray-200 text-4xl text-center rounded-lg"><span class="px-2 font-bold text-4xl">:</span>
+                                      <input type="text" placeholder="00" class="w-[60px] h-[48px] border-2 border-gray-200 text-4xl text-center rounded-lg" >
+                                   </div>
+                                  <div class="">
+                                      <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="AMPM">
+                                          <mat-button-toggle value="AM">AM</mat-button-toggle>
+                                          <mat-button-toggle value="PM">PM</mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                        
+                                  </div>
+                                </div>
+                                <Button class="bg-gray-200 px-4 py-3 w-[250px] mt-4 text-xl font-semibold" (click)="setreminder()">Set reminder</Button>
+                                
+                              </div>
+                        </form>
                       </div>
                       
             

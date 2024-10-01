@@ -11,9 +11,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./note-home.component.css']
 })
 export class NoteHomeComponent implements OnInit {
-
+  isLoading = true;
   inputValue: string = '';
   hasChanges: boolean = false;
+  searchKey:any=""
   AllNotes: any[] = [];
   AllTodos: any[] = [];
   TrashCount:Number=0
@@ -42,7 +43,10 @@ export class NoteHomeComponent implements OnInit {
     }else{
       this.Wish="Good Night"
     }
+    // console.log(this.Wish);
+
   }
+
 
   loadNotes() {
     this.Api.FetchNotes()
@@ -57,6 +61,8 @@ export class NoteHomeComponent implements OnInit {
     this.Api.getHomeTodo.subscribe((res: any) => {
       this.AllTodos = res;
       // console.log(this.AllTodos);
+    this.isLoading = false;
+
     });
   }
 
@@ -112,6 +118,20 @@ export class NoteHomeComponent implements OnInit {
       }
     });
   }
+
+
+  getBackgroundColor(index: number): string {
+    const r = Math.floor(Math.random() * 256); 
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256); 
+
+    const pastelR = Math.floor((r + 255) / 2);
+    const pastelG = Math.floor((g + 255) / 2);
+    const pastelB = Math.floor((b + 255) / 2);
+
+    return `rgb(${pastelR}, ${pastelG}, ${pastelB})`;
+  }
+
 }
 
 

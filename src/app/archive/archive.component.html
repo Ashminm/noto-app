@@ -8,22 +8,22 @@
         <div *ngIf="AllArchive.length>0; else emptyTrashs" >
           <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 ">
             <div *ngFor="let item of AllArchive" class="p-3 rounded-md bg-gray-200 cursor-pointer" >
-              <div class="flex justify-between mb-3">
-                <h1 class="pb-2">{{item?.title.slice(0, 30)}}</h1>
+              <div class="flex justify-between">
+                <h2 class="m-0">{{item?.title.slice(0, 30)}}</h2>
                 <div class="flex">
-                    <p class="cursor-pointer me-3" (click)="returnNote(item?._id)"> <span class="material-symbols-outlined text-[18px]">
+                    <h1 class="cursor-pointer me-3" (click)="returnNote(item?._id)"> <span class="material-symbols-outlined text-[18px]">
                         unarchive
-                        </span>
-                <h1 class="cursor-pointer">
+                        </span></h1>
+                <h2 class="cursor-pointer">
                   
                   <p (click)="openDeleteArchive(item?._id,'0ms', '0ms')"><i class="fa-solid fa-xmark fa-sm"></i></p>
-                </h1>
+                </h2>
                 </div>
               </div>
              
-                <h1 *ngIf="item?.body; else noBody" routerLink="/view/{{item?._id}}">
+                <p  *ngIf="item?.body; else noBody" routerLink="/view/{{item?._id}}">
                   {{ item?.body?.slice(0, 100) }}..
-                </h1>
+                </p>
            
               <ng-template #noBody>
                 <h1>Todo</h1>

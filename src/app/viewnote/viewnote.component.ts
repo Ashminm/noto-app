@@ -175,13 +175,18 @@ openDelete(_id: string | undefined, enterAnimationDuration: string, exitAnimatio
 }
 
 logDate(event: any) {
-  const selected = new Date(event.value); // Convert the selected value to a Date object
-  console.log('Selected Date:', selected.toDateString()); // Log the date in a readable format
+  const selected = new Date(event.value);
+  console.log('Selected Date:', selected.toDateString());
 }
 
 AMPM(event:any){
   console.log(event.value);
   
+}
+
+setreminder(){
+  console.log("Hi");
+
 }
 
 }

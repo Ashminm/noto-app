@@ -1,15 +1,15 @@
-<p type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom"><i class="fa-solid fa-plus text-xl hover:text-red-500"></i></p>
+<p type="button" class="m-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom"><i class="fa-solid fa-plus text-xl hover:text-red-500"></i></p>
 
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel3">
+<div class="offcanvas offcanvas-bottom h-1/2" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel3">
   <form [formGroup]="AddTodoForm">
     <div class="offcanvas-header">
       <div>
-          <h5 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel3">Task</h5>
+          <h1 class="offcanvas-title text-2xl font-medium" id="offcanvasBottomLabel3">Task</h1>
           <p class="text-sm">{{InCout}} {{Letter}}</p>
       </div>
      <div>
-      <button type="submit" *ngIf="AddTodoForm.valid" (click)="getFormData()" class="btn py-1"><i class="fa-solid fa-check text-2xl text-green-500"></i></button>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="resetFm()"></button>
+      <button type="submit" *ngIf="AddTodoForm.valid" (click)="getFormData()" class="btn py-1"><i class="fa-solid fa-circle-check text-2xl text-green-500"></i></button>
+      <button type="button" class="btn-close text-[17px] text-reset" data-bs-dismiss="offcanvas" aria-label="Close" (click)="resetFm()"></button>
      </div>
     </div>
     <div class="offcanvas-body small w-auto">
