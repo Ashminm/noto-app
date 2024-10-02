@@ -44,21 +44,24 @@ export class NoteHomeComponent implements OnInit {
       this.Wish="Good Night"
     }
     // console.log(this.Wish);
-
+    this.isLoading = true; 
   }
 
 
   loadNotes() {
+    this.isLoading = true; 
     this.Api.FetchNotes()
     this.Api.getHomeNote.subscribe((res: any) => {
       this.AllNotes = res;
       // console.log(this.AllNotes);
       sessionStorage.setItem("Notes",res.length)
+      this.isLoading = false;
 
     });
   }
 
   loadTodos() {
+    this.isLoading = true; 
     this.Api.FetchTodo()
     this.Api.getHomeTodo.subscribe((res: any) => {
       this.AllTodos = res;

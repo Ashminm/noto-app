@@ -26,25 +26,28 @@
                 </h1>
            </div>
            <div class="mt-4 overflow-y-scroll lg:h-[70vh] rounded-md p-3 border-2 border-gray-300">
-            <div *ngIf="AllNotes.length>0; else emptyNote" >
-                <div class="lg:w-100 border p-3 pb-0 mb-3 rounded-lg cursor-pointer"  [style.background]="getBackgroundColor(i)" routerLink="/view/{{note?._id}}" *ngFor="let note of AllNotes | search:searchKey; let i = index">
+            <div *ngIf="isLoading" class="text-start text-gray-500 p-6">
+                <h1>Loading...</h1>
+              </div>
+            <div *ngIf="!isLoading && AllNotes.length>0; else emptyNote" >
+                <div  class="lg:w-100 border p-3 pb-0 mb-3 rounded-lg cursor-pointer"  [style.background]="getBackgroundColor(i)" routerLink="/view/{{note?._id}}" *ngFor="let note of AllNotes | search:searchKey; let i = index">
                     <p class="uppercase font-black text-sm mb-1 text-gray-500">{{note?.date | date:'d MMM'}}</p>
                     <h1 class="text-xl font-medium mb-2 overflow-hidden">{{note?.title}}</h1>
                     <p class="overflow-scroll">{{note?.body.slice(0,248)}}...</p>
                     <p class="font-black text-xs m-0 text-gray-800 italic">{{note?.date | date:'h:mm a'}}</p>
                </div>
             </div>
-            <div class="" *ngIf="(AllNotes | search:searchKey).length === 0 " ngClass="flex items-center h-28" >
+            <div *ngIf="!isLoading && (AllNotes | search:searchKey).length === 0 " ngClass="flex items-center h-28" >
                 <p>Your search "<span class="text-rose-400">{{searchKey}}</span>"</p>
             </div>
             <ng-template #emptyNote>
-                <div class="text-center text-gray-500">
+                <div *ngIf="!isLoading && AllNotes.length === 0" class="text-center text-gray-500">
                     <h2 class="text-xl">You have not added any notes!</h2>
                     <div class="flex justify-center items-center mt-4">
-                        <div class=" bg-gray-200 flex rounded-3xl px-4 py-2 w-60 items-center">
-                            <h4 class="me-2 mb-0">Please add a note</h4>
-                            <app-addnote></app-addnote>
-                        </div>
+                      <div class="bg-gray-200 flex rounded-3xl px-4 py-2 w-60 items-center">
+                        <h4 class="me-2 mb-0">Please add a note</h4>
+                        <app-addnote></app-addnote>
+                      </div>
                     </div>
                   </div>
             </ng-template>
@@ -60,7 +63,10 @@
                </h1>
             </div>
             <div class="overflow-y-scroll lg:h-[85vh] rounded-md p-3 mt-3 border-2 border-gray-300">
-                <div *ngIf="AllTodos.length>0; else emptyTodo">
+                <div *ngIf="isLoading" class="text-start text-gray-600 p-7">
+                    <p>Loading...</p>
+                  </div>
+                <div *ngIf="!isLoading && AllTodos.length>0; else emptyTodo">
                     <div class=" lg:w-100 border mb-3 px-3 py-1 pt-3 rounded-lg" [style.background]="getBackgroundColor(i)" *ngFor="let todo of AllTodos; let i = index">
                         <div class="flex justify-between items-center">
                            <div *ngIf="todo.isLoading">Loading...</div>
@@ -78,13 +84,13 @@
                      </div>
                 </div>
                 <ng-template #emptyTodo>
-                    <div class="text-center text-gray-500 ">
-                        <h2 class="text-md">You have not added any Todos!</h2>
+                    <div *ngIf="!isLoading && AllTodos.length === 0" class="text-start text-gray-600">
+                        <h2 class="text-xl">You have not added any Task!</h2>
                         <div class="flex justify-center items-center mt-4">
-                            <div class="bg-gray-200 flex rounded-3xl px-4 py-2 w-60 items-center">
-                                <h4 class="me-2 mb-0">Please add a Todo</h4>
-                                <app-addtodo></app-addtodo>
-                            </div>
+                          <div class="bg-gray-200 flex rounded-3xl px-4 py-2 w-60 items-center">
+                            <h4 class="me-2 mb-0">Please add a Task</h4>
+                            <app-addtodo></app-addtodo>
+                          </div>
                         </div>
                       </div>
                 </ng-template>
