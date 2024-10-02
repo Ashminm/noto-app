@@ -27,7 +27,7 @@
            </div>
            <div class="mt-4 overflow-y-scroll lg:h-[70vh] rounded-md p-3 border-2 border-gray-300">
             <div *ngIf="isLoading" class="text-start text-gray-500 p-6">
-                <h1>Loading...</h1>
+                <h1><span><i class="fa-solid fa-circle-notch fa-spin-pulse fa-xl me-2"></i></span>Loading...</h1>
               </div>
             <div *ngIf="!isLoading && AllNotes.length>0; else emptyNote" >
                 <div  class="lg:w-100 border p-3 pb-0 mb-3 rounded-lg cursor-pointer"  [style.background]="getBackgroundColor(i)" routerLink="/view/{{note?._id}}" *ngFor="let note of AllNotes | search:searchKey; let i = index">
@@ -64,7 +64,7 @@
             </div>
             <div class="overflow-y-scroll lg:h-[85vh] rounded-md p-3 mt-3 border-2 border-gray-300">
                 <div *ngIf="isLoading" class="text-start text-gray-600 p-7">
-                    <p>Loading...</p>
+                    <p><span><i class="fa-solid fa-circle-notch fa-spin-pulse fa-xl me-2"></i></span>Loading...</p>
                   </div>
                 <div *ngIf="!isLoading && AllTodos.length>0; else emptyTodo">
                     <div class=" lg:w-100 border mb-3 px-3 py-1 pt-3 rounded-lg" [style.background]="getBackgroundColor(i)" *ngFor="let todo of AllTodos; let i = index">
