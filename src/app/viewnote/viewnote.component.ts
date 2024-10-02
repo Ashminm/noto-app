@@ -14,15 +14,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./viewnote.component.css'],
 })
 export class ViewnoteComponent implements OnInit {
-  selectedDate: any;
-  selectedTime: string = '00:00';
-
   isLoading = true;
   inpCont:any=0
   hasChanges: boolean = false;
   NoteUid:any=0
   AllNotes:any={}
   isCopied: boolean = false;
+  PrivetCount:any=sessionStorage.getItem('privetCount')||0
+  ArchiveCount:any=sessionStorage.getItem('ArchiveCu')||0
+  TrashCount:any=sessionStorage.getItem('TrashCu')||0
+  NotesCount:any=sessionStorage.getItem('Notes')||0
+  TodosCount:any=sessionStorage.getItem('Todos')||0
 
 
  constructor(private dialog: MatDialog,private aroute:ActivatedRoute,private api:BackendApiService,private toastr:ToastrService,private router:Router) {
@@ -172,21 +174,6 @@ openDelete(_id: string | undefined, enterAnimationDuration: string, exitAnimatio
       this.getData();
     }
   });
-}
-
-logDate(event: any) {
-  const selected = new Date(event.value);
-  console.log('Selected Date:', selected.toDateString());
-}
-
-AMPM(event:any){
-  console.log(event.value);
-  
-}
-
-setreminder(){
-  console.log("Hi");
-
 }
 
 }

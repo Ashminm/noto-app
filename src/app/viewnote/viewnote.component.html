@@ -55,41 +55,42 @@
                         </div>
                         <div class="flex flex-wrap justify-center">
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-blue-500 rounded-lg">
-                                <div class="flex justify-between px-4 pt-4">
+                                <div class="flex justify-between px-4 pt-4" routerLink="">
                                 <h5 class="m-0"><i class="fa-solid fa-clone text-xl  text-blue-500"></i></h5>
-                                <h5 class=" text-blue-500">0</h5>
+                                <h5 class=" text-blue-500">{{NotesCount}}</h5>
                                 </div>
                                 <h5 class="px-4 font-medium text-blue-500">All</h5>
                             </div>
-                            <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-orange-500 rounded-lg">
-                                <div class="flex justify-between px-4 pt-4">
-                                    <h1 class="m-0"><i class="fa-solid fa-clock text-xl  text-orange-500"></i></h1>
-                                    <h5 class=" text-orange-500">0</h5>
-                                    </div>
-                                    <h5 class="px-4 font-medium text-orange-500">Scheduled</h5>
+                            <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-green-500 rounded-lg">
+                                <div class="flex justify-between px-4 pt-4" routerLink="">
+                                <h5 class="m-0"><i class="fa-solid fa-list-check text-xl  text-green-500"></i></h5>
+                                <h5 class=" text-green-500">{{TodosCount}}</h5>
+                                </div>
+                                <h5 class="px-4 font-medium text-green-500">Todos</h5>
                             </div>
+                            
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-red-500 rounded-lg">
-                                <div class="flex justify-between px-4 pt-4">
+                                <div class="flex justify-between px-4 pt-4" routerLink="/privet">
                                     <h1 class="m-0"><i class="fa-solid fa-lock text-xl  text-red-500"></i></h1>
-                                    <h5 class=" text-red-500">0</h5>
+                                    <h5 class=" text-red-500">{{PrivetCount}}</h5>
                                     </div>
                                     <h5 class="px-4 font-medium text-red-500">Private</h5>
                             </div>
                             <div class="bg-gray-100 w-40 h-28 my-3 mx-2 border-2 border-purple-600 rounded-lg">
-                                <div class="flex justify-between px-4 pt-4">
+                                <div class="flex justify-between px-4 pt-4" routerLink="/archive">
                                     <h1 class="m-0"><i class="fa-solid fa-box-archive text-xl  text-purple-500"></i></h1>
-                                    <h5 class=" text-purple-500">0</h5>
+                                    <h5 class=" text-purple-500">{{ArchiveCount}}</h5>
                                     </div>
                                     <h5 class="px-4 font-medium text-purple-500">Archive</h5>
                             </div>
                             <div class="bg-gray-100 w-full h-14 border-2 border-gray-600 rounded-lg mx-3 me-4 mt-3 lg:hidden md:hidden">
-                                <div class="flex justify-between items-center py-1 px-3">
+                                <div class="flex justify-between items-center py-1 px-3" routerLink="/trash">
                                    <div class="flex justify-between items-center">
                                       <h1><i class="fa-solid fa-trash text-xl text-gray-500"></i></h1>
                                       <h5 class="font-medium  text-gray-500 ps-2">Trash</h5>
                                    </div>
                                    <div >
-                                      <h5 class=" text-gray-500">0</h5>
+                                      <h5 class=" text-gray-500">{{TrashCount}}</h5>
                                    </div>
                                 </div>
                               </div>
@@ -99,47 +100,8 @@
     
             </div>
             <div class="overflow-scroll pe-4">
-                <div class="flex justify-between w-72  cursor-pointer ">
+                <div class="flex justify-between items-center w-[17rem] cursor-pointer ">
                     <h1 (click)="addtoPrivet()" title="add to privet" class="cursor-pointer hover:text-gray-600" ><i class="fa-solid fa-lock text-xl"></i></h1>
-                    <h1 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom1" aria-controls="offcanvasBottom1">
-                        <i class="fa-solid fa-bell text-xl lg:ms-0 sm:ms-4 hover:text-gray-600"></i>
-                      </h1>
-
-
-                      <div class="offcanvas offcanvas-bottom h-1/2" tabindex="-1" id="offcanvasBottom1" aria-labelledby="offcanvasBottomLabel1">
-                        <div class="offcanvas-header">
-                          <h5 class="offcanvas-title" id="offcanvasBottomLabel1">Reminder Note</h5>
-                          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <form >
-                            <div class="offcanvas-body w-auto">
-                                <mat-form-field appearance="fill">
-                                  <mat-label>Choose a date</mat-label>
-                                  <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="logDate($event)">
-                                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                  <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
-                                <div class="flex">
-                                  <div class="me-2">
-                                      <input type="text" placeholder="02" class="w-[60px] h-[48px] border-2 border-gray-200 text-4xl text-center rounded-lg"><span class="px-2 font-bold text-4xl">:</span>
-                                      <input type="text" placeholder="00" class="w-[60px] h-[48px] border-2 border-gray-200 text-4xl text-center rounded-lg" >
-                                   </div>
-                                  <div class="">
-                                      <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="AMPM">
-                                          <mat-button-toggle value="AM">AM</mat-button-toggle>
-                                          <mat-button-toggle value="PM">PM</mat-button-toggle>
-                                        </mat-button-toggle-group>
-                                        
-                                  </div>
-                                </div>
-                                <Button class="bg-gray-200 px-4 py-3 w-[250px] mt-4 text-xl font-semibold" (click)="setreminder()">Set reminder</Button>
-                                
-                              </div>
-                        </form>
-                      </div>
-                      
-            
-
                       <div *ngIf="isLoading">Loading...</div>
                       <h1 title="Add to Archive" *ngIf="!isLoading && AllNotes?._id" (click)="archived()" class="hover:text-gray-600">
                         <i class="fa-solid fa-box-archive text-xl "></i>

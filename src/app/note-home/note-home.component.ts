@@ -53,6 +53,8 @@ export class NoteHomeComponent implements OnInit {
     this.Api.getHomeNote.subscribe((res: any) => {
       this.AllNotes = res;
       // console.log(this.AllNotes);
+      sessionStorage.setItem("Notes",res.length)
+
     });
   }
 
@@ -62,6 +64,8 @@ export class NoteHomeComponent implements OnInit {
       this.AllTodos = res;
       // console.log(this.AllTodos);
     this.isLoading = false;
+    sessionStorage.setItem("Todos",res.length)
+
 
     });
   }
@@ -70,6 +74,7 @@ export class NoteHomeComponent implements OnInit {
     this.Api.getAllTrash().subscribe((res:any)=>{
       this.TrashCount=res.length
       // console.log(this.TrashCount);
+      sessionStorage.setItem("TrashCu",res.length)
       
     })
   }
@@ -77,6 +82,8 @@ export class NoteHomeComponent implements OnInit {
   getAllArchive(){
     this.Api.getArchive().subscribe((res:any)=>{
       this.ArchiveCount=res.length
+      sessionStorage.setItem("ArchiveCu",res.length)
+
     })
   }
 
