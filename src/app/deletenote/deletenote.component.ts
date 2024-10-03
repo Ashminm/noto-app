@@ -54,7 +54,7 @@ export class DeletenoteComponent implements OnInit {
         this.addTrash();
         this.dialogRef.close(true);
         // this.toster.success("Delete your Note!!")
-        this.router.navigateByUrl('')
+        this.router.navigateByUrl('/')
       },
       error: (err: any) => {
         console.log(err);

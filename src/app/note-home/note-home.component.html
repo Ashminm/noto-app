@@ -18,10 +18,10 @@
             <h4 class="text-xs m-0 font-medium text-gray-500">{{curDate}}</h4>
            </div>
            <input [(ngModel)]="searchKey" type="search" placeholder="Search notes" class="sm:my-3 my-2 w-full lg:w-full md:w-full px-3 py-[8px] rounded-md outline-none bg-gray-200 " >
-           <div class="flex justify-between items-center">
-                <h1 class="text-xl font-medium">General</h1>
-                <h1 class="w-9/12 bg-black h-1 mx-3"></h1>
-                <h1>
+           <div class="flex justify-between items-center ">
+                <h1 class="text-xl font-medium  mb-0">General</h1>
+                <h1 class="w-9/12 bg-black h-1 mx-3 mb-0"></h1>
+                <h1 class="m-0">
                   <app-addnote></app-addnote>
                 </h1>
            </div>
@@ -34,11 +34,16 @@
                 </div>
               </div>
             <div *ngIf="!isLoading && AllNotes.length>0; else emptyNote" >
-                <div  class="lg:w-100 border p-3 pb-0 mb-3 rounded-lg cursor-pointer"  [style.background]="getBackgroundColor(i)" routerLink="/view/{{note?._id}}" *ngFor="let note of AllNotes | search:searchKey; let i = index">
-                    <p class="uppercase font-black text-sm mb-1 text-gray-500">{{note?.date | date:'d MMM'}}</p>
+                <div  class="lg:w-100 border p-3 pb-0 mb-3 rounded-lg cursor-pointer"  [style.background]="getBackgroundColor(i)" *ngFor="let note of AllNotes | search:searchKey; let i = index">
+                    <div routerLink="/view/{{note?._id}}" >
+                        <p class="uppercase font-black text-sm mb-1 text-gray-500">{{note?.date | date:'d MMM'}}</p>
                     <h1 class="text-xl font-medium mb-2 overflow-hidden">{{note?.title}}</h1>
                     <p class="overflow-scroll">{{note?.body.slice(0,248)}}...</p>
-                    <p class="font-black text-xs m-0 text-gray-800 italic">{{note?.date | date:'h:mm a'}}</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="font-black text-xs m-0 text-gray-800 italic">{{note?.date | date:'h:mm a'}}</p>
+                        <p class="m-0 cursor-pointer" title="Delete Note" (click)="NoteopenDelete(note?._id,'0ms', '0ms')" ><i class="fa-solid fa-xmark fa-lg"></i></p>
+                    </div>
                </div>
             </div>
             <div *ngIf="!isLoading && (AllNotes | search:searchKey).length === 0 " ngClass="flex items-center h-28" >
@@ -58,7 +63,7 @@
            </div>
         </div>
         <div class="p-4 py-0 lg:w-[30%] xl:w-[29%] 2xl:w-[24%] sm:w-full md:w-full lg:h-[97vh]">
-            <h1 class="text-3xl font-medium">To-Do-List</h1>
+            <h1 class="text-3xl font-medium m-0">To-Do-List</h1>
             <div class="flex justify-between m-0 items-center">
                <p class="m-0 text-md">{{AllTodos.length}} Task</p>
                <h1 class="m-0 w-40 bg-black h-0.5 mx-3"></h1>

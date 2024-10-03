@@ -129,6 +129,21 @@ export class NoteHomeComponent implements OnInit {
     });
   }
 
+  NoteopenDelete(_id: string, enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const dialogRef = this.dialog.open(DeletenoteComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: { _id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.AllNotes = this.AllNotes.filter(Note => Note._id !== _id);
+      }
+    });
+  }
+
 
   getBackgroundColor(index: number): string {
     const r = Math.floor(Math.random() * 256); 
