@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BackendApiService {
 
-  SERVER_URL="http://localhost:3000"
-  // https://noto-server-lhnc.onrender.com
+  SERVER_URL="https://noto-server-lhnc.onrender.com"
+  // http://localhost:3000
   getHomeNote = new BehaviorSubject<any[]>([]);
   getHomeTodo = new BehaviorSubject<any[]>([]);
   getPrivetNote = new BehaviorSubject<any[]>([]);
