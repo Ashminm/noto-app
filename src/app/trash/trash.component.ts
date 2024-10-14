@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class TrashComponent implements OnInit {
 
   AllTrash:any[]=[]
-
+  byIdData:any=[]
   constructor(private Api:BackendApiService,private dialog: MatDialog,private toster:ToastrService){}
 
   ngOnInit() {
@@ -46,6 +46,24 @@ export class TrashComponent implements OnInit {
     }else{
       this.toster.info("No items in your Bin")
       console.log("No items");
+    }
+  }
+
+  recoverTrashItem(id:any){
+    // console.log(id);
+    this.byIdData=this.AllTrash.find((item:any)=>item._id===id)
+    console.log(this.byIdData);
+    if(this.byIdData){
+      this.Api.recoverTrashToNote(id,this.byIdData).subscribe({
+        next:(res:any)=>{
+          console.log(res);
+          this.loadTrash()
+          this.toster.success("Recover Success")
+        },error:(err:any)=>{
+          console.log(err);
+          this.toster.error(err.error)
+        }
+      })
     }
   }
 

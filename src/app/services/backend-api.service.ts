@@ -36,6 +36,9 @@ export class BackendApiService {
   recoverArchive(id: string, data: any) {
     return this.Http.post(`${this.SERVER_URL}/reco-archive/${id}`, data);
   }
+  recoverTrashToNote(id:string,data:any){
+    return this.Http.post(`${this.SERVER_URL}/Recover-Trash/${id}`, data);
+  }
 
 // ------Replace to use fetchTodo() => BehaviorSubject-------------------------
   getAllTodos(){
